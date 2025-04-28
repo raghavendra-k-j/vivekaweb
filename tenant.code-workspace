@@ -1,0 +1,30 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "app"
+		},
+		{
+			"name" : "routes",
+			"path": "app/routes"
+		},
+		{
+			"name" : "widgets",
+			"path": "app/ui/widgets"
+		},
+		{
+			"name" : "components",
+			"path": "app/ui/components"
+		},
+		{
+			"name" : "pages",
+			"path": "app/ui/pages"
+		},
+		{
+			"name" : "ds",
+			"path": "app/ui/ds"
+		}
+	]
+}
