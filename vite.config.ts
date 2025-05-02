@@ -27,4 +27,8 @@ export default defineConfig({
   server: {
     hmr: false,
   },
+  build: {
+    minify: false,
+    sourcemap: true,
+  }
 });
