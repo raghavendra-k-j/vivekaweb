@@ -1,4 +1,4 @@
-import { Check, ChevronLeft, ChevronRight, Delete } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Delete, Trash2 } from "lucide-react";
 import styles from "./../style.module.css";
 import type { ReactNode } from "react";
 import clsx from "clsx";
@@ -9,6 +9,7 @@ export function FooterView() {
     return (
         <div className={styles.keyboardFooter}>
             <div className={styles.actions}>
+                <ActionButton icon={<Trash2 />} onClick={() => store.clear()} />
                 <ActionButton icon={<ChevronLeft />} onClick={() => store.navigateLeft()} />
                 <ActionButton icon={<ChevronRight />} onClick={() => store.navigateRight()} />
                 <ActionButton icon={<Delete />} onClick={() => store.backspace()} />
@@ -17,7 +18,6 @@ export function FooterView() {
         </div>
     );
 }
-
 
 type ActionButtonProps = {
     icon: ReactNode;
@@ -40,5 +40,3 @@ function DoneButton() {
         </button>
     );
 }
-
-

@@ -74,7 +74,7 @@ export class LaTexKbStore {
             this.mf = mf;
         });
         mf.mathVirtualKeyboardPolicy = "manual";
-        mf.placeholder = "Enter a formula";
+        mf.placeholder = "\\text{Enter a formula}";
         mf.focus();
     }
 
@@ -95,6 +95,10 @@ export class LaTexKbStore {
 
     backspace() {
         this.execKeyboardAction("deleteBackward");
+    }
+
+    clear() {
+        this.execKeyboardAction("deleteAll");
     }
 
     execKeyboardAction(selector: Selector) {
