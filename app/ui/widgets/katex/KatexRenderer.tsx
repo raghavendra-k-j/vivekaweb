@@ -23,6 +23,11 @@ function KatexRenderer({
             katex.render(tex, el, {
                 throwOnError: false,
                 displayMode: !inline,
+                macros: {
+                    "\\placeholder": "\\square",
+                    ...(katexOptions?.macros || {}),
+                },
+                ...katexOptions,
                 ...katexOptions,
             });
         }

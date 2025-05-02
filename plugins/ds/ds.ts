@@ -2,12 +2,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import type { Plugin, ViteDevServer } from 'vite';
 import { bundleAndLoadTokens } from './fileReader';
-import { generateScssFile } from './fileWriter';
-import { logger } from './../../app/core/utils/logger';
+import { generateCssFile } from './fileWriter';
+import { Logger, LogLevel } from './../../app/core/utils/logger';
+
+export const dsLogger = new Logger('ds-plugin');
+dsLogger.setLogLevel(LogLevel.INFO);
 
 interface DsPluginOptions {
   sourceTokenFile: string;
-  scssOutputPath: string;
+  cssOutputPath: string;
 }
 
 export default function createDsPlugin(options: DsPluginOptions): Plugin {
@@ -15,80 +18,62 @@ export default function createDsPlugin(options: DsPluginOptions): Plugin {
   let resolvedOutputPath: string;
   let serverInstance: ViteDevServer | null = null;
 
-  // Helper function to log and handle regeneration
-  async function regenerateTokens(sourcePath: string, outputPath: string) {
-    logger.info(`[vite-plugin-ds-ts] Change detected in ${path.basename(sourcePath)}. Regenerating ${path.basename(outputPath)}...`);
+  function resolvePaths(root: string): void {
+    resolvedSourcePath = path.resolve(root, options.sourceTokenFile);
+    resolvedOutputPath = path.resolve(root, options.cssOutputPath);
+  }
+
+  async function handleTokenGeneration(context: {
+    label: string;
+    failOnError?: boolean;
+  }): Promise<void> {
+    const { label, failOnError = false } = context;
+    dsLogger.debug(`${label}: Processing tokens...`);
+
     try {
-      const loadedTokens = await bundleAndLoadTokens(sourcePath);
-      if (loadedTokens !== null) {
-        await generateScssFile(loadedTokens, outputPath);
-        logger.info(`[vite-plugin-ds-ts] Successfully regenerated ${path.basename(outputPath)}.`);
+      const tokens = await bundleAndLoadTokens(resolvedSourcePath);
+      if (tokens !== null) {
+        await generateCssFile(tokens, resolvedOutputPath);
+        dsLogger.info(`${label}: CSS file generated successfully.`);
       } else {
-        logger.error(`[vite-plugin-ds-ts] Failed to load tokens after change. SCSS file not updated.`);
+        const msg = `${label}: Token loading failed.`;
+        dsLogger.debug(msg);
+        if (failOnError) throw new Error(msg);
         serverInstance?.ws.send({
           type: 'error',
-          err: { message: `Failed to process ${path.basename(sourcePath)} after change.`, stack: '', plugin: 'vite-plugin-ds-ts' }
+          err: { message: msg, stack: '', plugin: 'ds-plugin' }
         });
       }
     } catch (error: any) {
-      logger.error(`[vite-plugin-ds-ts] Error during regeneration: ${error.message || error}`);
+      const errMsg = `${label}: Error - ${error.message || error}`;
+      dsLogger.debug(errMsg);
+      if (failOnError) throw error;
       serverInstance?.ws.send({
         type: 'error',
-        err: { message: `Error regenerating ${path.basename(outputPath)}: ${error.message}`, stack: error.stack || '', plugin: 'vite-plugin-ds-ts' }
+        err: { message: errMsg, stack: error.stack || '', plugin: 'ds-plugin' }
       });
     }
   }
 
   return {
-    name: "vite-plugin-ds-ts",
+    name: 'ds-plugin',
 
-    // Runs once when the build starts (both dev and build)
     configResolved(config) {
-      const __filename = fileURLToPath(import.meta.url);
-      const pluginDir = path.dirname(__filename);
-
-      // Resolve the source and output paths based on the plugin options
-      resolvedSourcePath = options.sourceTokenFile
-        ? path.resolve(config.root, options.sourceTokenFile)
-        : path.resolve(pluginDir, "../../ds/tokens.ts");
-
-      resolvedOutputPath = options.scssOutputPath
-        ? path.resolve(config.root, options.scssOutputPath)
-        : path.resolve(pluginDir, "../../ds/tokens.scss");
-
-      logger.info(`[vite-plugin-ds-ts] Source tokens path: ${resolvedSourcePath}`);
-      logger.info(`[vite-plugin-ds-ts] Output SCSS path: ${resolvedOutputPath}`);
+      resolvePaths(config.root);
     },
 
-    // Runs initial generation when the build process starts
     async buildStart() {
-      logger.info(`[vite-plugin-ds-ts] buildStart: Running initial token processing...`);
-      try {
-        const loadedTokens = await bundleAndLoadTokens(resolvedSourcePath);
-        if (loadedTokens !== null) {
-          await generateScssFile(loadedTokens, resolvedOutputPath);
-        } else {
-          this.error(`Failed to load initial tokens from ${resolvedSourcePath}.`);
-        }
-      } catch (error: any) {
-        logger.error(`[vite-plugin-ds-ts] Error during initial buildStart: ${error.message || error}`);
-        this.error(`Failed during initial token processing: ${error.message || error}`);
-      }
+      await handleTokenGeneration({ label: 'buildStart', failOnError: true });
     },
 
-    // Hook specifically for configuring the Vite development server
     configureServer(server: ViteDevServer) {
-      serverInstance = server; // Store server instance for later use
-
-      // Add the source token file to Vite's watch list
+      serverInstance = server;
       server.watcher.add(resolvedSourcePath);
-      logger.info(`[vite-plugin-ds-ts] Watching ${resolvedSourcePath} for changes.`);
+      dsLogger.debug(`Watching for changes: ${resolvedSourcePath}`);
 
-      // Listen for 'change' events from the watcher
       server.watcher.on('change', async (filePath) => {
-        // Ensure the changed file is the one we are watching
         if (path.normalize(filePath) === path.normalize(resolvedSourcePath)) {
-          await regenerateTokens(resolvedSourcePath, resolvedOutputPath);
+          await handleTokenGeneration({ label: 'fileChange' });
         }
       });
     },

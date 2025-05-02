@@ -1,0 +1,3746 @@
+Supported Functions
+This is a list of TeX functions supported by KaTeX. It is sorted into logical groups.
+
+There is a similar Support Table, sorted alphabetically, that lists both supported and un-supported functions.
+
+Accents
+a
+′
+a 
+′
+  a'	
+a
+~
+a
+~
+  \tilde{a}	
+g
+˚
+g
+˚
+​
+  \mathring{g}
+a
+′
+′
+a 
+′′
+  a''	
+a
+c
+~
+ac
+  \widetilde{ac}	
+A
+B
+⏠
+AB
+  \overgroup{AB}
+a
+′
+a 
+′
+  a^{\prime}	
+A
+B
+~
+AB
+​
+  \utilde{AB}	
+A
+B
+⏡
+AB
+​
+  \undergroup{AB}
+a
+ˊ
+a
+ˊ
+  \acute{a}	
+F
+⃗
+F
+  \vec{F}	
+A
+B
+⇒
+AB
+  \Overrightarrow{AB}
+y
+ˉ
+y
+ˉ
+​
+  \bar{y}	
+A
+B
+←
+AB
+  \overleftarrow{AB}	
+A
+B
+→
+AB
+  \overrightarrow{AB}
+a
+˘
+a
+˘
+  \breve{a}	
+A
+B
+←
+AB
+​
+  \underleftarrow{AB}	
+A
+B
+→
+AB
+​
+  \underrightarrow{AB}
+a
+ˇ
+a
+ˇ
+  \check{a}	
+a
+c
+↼
+ac
+  \overleftharpoon{ac}	
+a
+c
+⇀
+ac
+  \overrightharpoon{ac}
+a
+˙
+a
+˙
+  \dot{a}	
+A
+B
+↔
+AB
+  \overleftrightarrow{AB}	
+A
+B
+⏞
+AB
+  \overbrace{AB}
+a
+¨
+a
+¨
+  \ddot{a}	
+A
+B
+↔
+AB
+​
+  \underleftrightarrow{AB}	
+A
+B
+⏟
+AB
+​
+  \underbrace{AB}
+a...
+a
+...
+​
+ 
+  \dddot{a}	
+A
+B
+‾
+AB
+  \overline{AB}	
+A
+B
+undefined
+AB
+  \overlinesegment{AB}
+a....
+a
+....
+​
+ 
+  \ddddot{a}	
+A
+B
+‾
+AB
+​
+  \underline{AB}	
+A
+B
+undefined
+AB
+​
+  \underlinesegment{AB}
+a
+ˋ
+a
+ˋ
+  \grave{a}	
+a
+c
+ˇ
+ac
+  \widecheck{ac}	
+X
+‾
+X
+​
+  \underbar{X}
+θ
+^
+θ
+^
+  \hat{\theta}	
+a
+c
+^
+ac
+  \widehat{ac}	
+Accent functions inside \text{…}
+
+a
+ˊ
+a
+ˊ
+  \'{a}	
+a
+˜
+a
+˜
+  \~{a}	
+a
+˙
+a
+˙
+  \.{a}	
+a
+˝
+a
+˝
+  \H{a}
+a
+ˋ
+a
+ˋ
+  \`{a}	
+a
+ˉ
+a
+ˉ
+  \={a}	
+a
+¨
+a
+¨
+  \"{a}	
+a
+ˇ
+a
+ˇ
+  \v{a}
+a
+ˆ
+a
+ˆ
+  \^{a}	
+a
+˘
+a
+˘
+  \u{a}	
+a
+˚
+a
+˚
+  \r{a}
+See also letters and unicode.
+
+Delimiters
+(
+ 
+)
+( ) ( )	
+(
+ 
+)
+( ) \lparen
+    
+    \rparen	
+⌈
+ 
+⌉
+⌈ ⌉ ⌈ ⌉	
+⌈
+ 
+⌉
+⌈ ⌉ \lceil
+     
+     \rceil	
+↑
+↑ \uparrow
+[
+ 
+]
+[ ] [ ]	
+[
+ 
+]
+[ ] \lbrack
+    
+    \rbrack	
+⌊
+ 
+⌋
+⌊ ⌋ ⌊ ⌋	
+⌊
+ 
+⌋
+⌊ ⌋ \lfloor
+     
+     \rfloor	
+↓
+↓ \downarrow
+{
+}
+{} \{ \}	
+{
+}
+{} \lbrace
+    
+    \rbrace	
+⎰
+⎱
+⎰⎱ ⎰⎱	
+⎰
+⎱
+⎰⎱ \lmoustache
+    
+    \rmoustache	
+↕
+↕ \updownarrow
+⟨
+ 
+⟩
+⟨ ⟩ ⟨ ⟩	
+⟨
+ 
+⟩
+⟨ ⟩ \langle
+    
+    \rangle	
+⟮
+ 
+⟯
+⟮ ⟯ ⟮ ⟯	
+⟮
+ 
+⟯
+⟮ ⟯ \lgroup
+     
+     \rgroup	
+⇑
+⇑ \Uparrow
+∣
+∣ |	
+∣
+∣ \vert	
+┌
+┐
+┌┐ ┌ ┐	
+⌜
+⌝
+┌┐ \ulcorner
+    
+    \urcorner	
+⇓
+⇓ \Downarrow
+∥
+∥ \|	
+∥
+∥ \Vert	
+└
+┘
+└┘ └ ┘	
+⌞
+⌟
+└┘ \llcorner
+    
+    \lrcorner	
+⇕
+⇕ \Updownarrow
+∣
+ 
+∣
+∣ ∣ \lvert
+    
+    \rvert	
+∥
+ 
+∥
+∥ ∥ \lVert
+     
+     \rVert	\left.	\right.	
+\
+\ \backslash
+⟨
+ 
+⟩
+⟨ ⟩ \lang
+    
+    \rang	
+<
+ 
+>
+< > \lt \gt	
+⟦
+ 
+⟧
+[[ ]] ⟦ ⟧	
+⟦
+ 
+⟧
+[[ ]] \llbracket
+    
+    \rrbracket	
+⦃
+ 
+⦄
+{[ ]} \lBrace \rBrace
+Delimiter Sizing
+
+(
+A
+B
+)
+(AB) \left(\LARGE{AB}\right)
+
+(
+(
+(
+(
+(
+((((( ( \big( \Big( \bigg( \Bigg(
+
+\left	\big	\bigl	\bigm	\bigr
+\middle	\Big	\Bigl	\Bigm	\Bigr
+\right	\bigg	\biggl	\biggm	\biggr
+\Bigg	\Biggl	\Biggm	\Biggr
+Environments
+a
+b
+c
+d
+a
+c
+​
+  
+b
+d
+​
+ 	\begin{matrix}
+   a & b \\
+   c & d
+\end{matrix}	
+a
+b
+c
+d
+a
+c
+​
+  
+b
+d
+​
+ 	\begin{array}{cc}
+   a & b \\
+   c & d
+\end{array}
+(
+a
+b
+c
+d
+)
+( 
+a
+c
+​
+  
+b
+d
+​
+ )	\begin{pmatrix}
+   a & b \\
+   c & d
+\end{pmatrix}	
+[
+a
+b
+c
+d
+]
+[ 
+a
+c
+​
+  
+b
+d
+​
+ ]	\begin{bmatrix}
+   a & b \\
+   c & d
+\end{bmatrix}
+∣
+a
+b
+c
+d
+∣
+​
+  
+a
+c
+​
+  
+b
+d
+​
+  
+​
+ 	\begin{vmatrix}
+   a & b \\
+   c & d
+\end{vmatrix}	
+∥
+a
+b
+c
+d
+∥
+​
+  
+a
+c
+​
+  
+b
+d
+​
+  
+​
+ 	\begin{Vmatrix}
+   a & b \\
+   c & d
+\end{Vmatrix}
+{
+a
+b
+c
+d
+}
+{ 
+a
+c
+​
+  
+b
+d
+​
+ }	\begin{Bmatrix}
+   a & b \\
+   c & d
+\end{Bmatrix}	
+a
+b
+c
+d
+e
+f
+g
+h
+i
+a
+d
+g
+​
+  
+b
+e
+h
+​
+  
+c
+f
+i
+​
+ 
+​
+ 	\def\arraystretch{1.5}
+   \begin{array}{c:c:c}
+   a & b & c \\ \hline
+   d & e & f \\
+   \hdashline
+   g & h & i
+\end{array}
+x
+=
+{
+a
+if 
+b
+c
+if 
+d
+x={ 
+a
+c
+​
+  
+if b
+if d
+​
+ 	x = \begin{cases}
+   a &\text{if } b \\
+   c &\text{if } d
+\end{cases}	
+a
+if 
+b
+c
+if 
+d
+}
+⇒
+…
+a
+c
+​
+  
+if b
+if d
+​
+ }⇒…	\begin{rcases}
+   a &\text{if } b \\
+   c &\text{if } d
+\end{rcases}⇒…
+a
+b
+c
+d
+a
+c
+​
+  
+b
+d
+​
+ 	\begin{smallmatrix}
+   a & b \\
+   c & d
+\end{smallmatrix}	
+∑
+i
+∈
+Λ
+0
+<
+j
+<
+n
+i∈Λ
+0<j<n
+​
+ 
+∑
+​
+ 
+\sum_{
+\begin{subarray}{l}
+   i\in\Lambda\\
+   0<j<n
+\end{subarray}}
+The auto-render extension will render the following environments even if they are not inside math delimiters such as $$…$$. They are display-mode only.
+
+a
+=
+b
++
+c
+=
+e
++
+f
+a
+​
+  
+=b+c
+=e+f
+​
+ 
+​
+  
+​
+ 
+\begin{equation}
+\begin{split}   a &=b+c\\
+      &=e+f
+\end{split}
+\end{equation}	
+a
+=
+b
++
+c
+d
++
+e
+=
+f
+a
+d+e
+​
+  
+=b+c
+=f
+​
+  
+​
+ 
+\begin{align}
+   a&=b+c \\
+   d+e&=f
+\end{align}
+a
+=
+b
+e
+=
+b
++
+c
+a=b
+e=b+c
+​
+  
+​
+ 
+\begin{gather}
+   a=b \\
+   e=b+c
+\end{gather}	
+10
+x
++
+3
+y
+=
+2
+3
+x
++
+13
+y
+=
+4
+10
+3
+​
+  
+x+
+x+
+​
+  
+3
+13
+​
+  
+y=2
+y=4
+​
+  
+​
+ 
+\begin{alignat}{2}
+   10&x+&3&y=2\\
+   3&x+&13&y=4
+\end{alignat}
+A
+→
+a
+B
+b
+↓
+↑
+c
+C
+=
+D
+A
+b 
+↓
+⏐
+​
+ 
+C
+​
+  
+a
+​
+ 
+ 
+​
+  
+B
+⏐
+↑
+​
+ c
+D
+​
+ 
+\begin{CD}
+   A @>a>> B \\
+@VbVV @AAcA \\
+   C @= D
+\end{CD}
+Other KaTeX Environments
+Environments	How they differ from those shown above
+darray, dcases, drcases	… apply displaystyle
+matrix*, pmatrix*, bmatrix*
+Bmatrix*, vmatrix*, Vmatrix*	… take an optional argument to set column
+alignment, as in \begin{matrix*}[r]
+equation*, gather*
+align*, alignat*	… have no automatic numbering. Alternatively, you can use \nonumber or \notag to omit the numbering for a specific row of the equation.
+gathered, aligned, alignedat	… do not need to be in display mode.
+… have no automatic numbering.
+… must be inside math delimiters in
+order to be rendered by the auto-render
+extension.
+Acceptable line separators include: \\, \cr, \\[distance], and \cr[distance]. Distance can be written with any of the KaTeX units.
+
+The {array} environment supports | and : vertical separators.
+
+The {array} environment does not yet support \cline or \multicolumn.
+
+\tag can be applied to individual rows of top-level environments (align, align*, alignat, alignat*, gather, gather*).
+
+HTML
+The following "raw HTML" features are potentially dangerous for untrusted inputs, so they are disabled by default, and attempting to use them produces the command names in red (which you can configure via the errorColor option). To fully trust your LaTeX input, you need to pass an option of trust: true; you can also enable just some of the commands or for just some URLs via the trust option.
+
+KaTeX
+K 
+A
+ T 
+E
+​
+ X	\href{https://katex.org/}{\KaTeX}
+https://katex.org/
+https://katex.org/	\url{https://katex.org/}
+KA logo	\includegraphics[height=0.8em, totalheight=0.9em, width=0.9em, alt=KA logo]{https://katex.org/img/khan-academy.png}
+x
+x …<span id="bar" class="enclosing">…x…</span>…	\htmlId{bar}{x}
+x
+x …<span class="enclosing foo">…x…</span>…	\htmlClass{foo}{x}
+x
+x …<span style="color: red;" class="enclosing">…x…</span>…	\htmlStyle{color: red;}{x}
+x
+x …<span data-foo="a" data-bar="b" class="enclosing">…x…</span>…	\htmlData{foo=a, bar=b}{x}
+\includegraphics supports height, width, totalheight, and alt in its first argument. height is required.
+
+HTML extension (\html-prefixed) commands are non-standard, so loosening strict option for htmlExtension is required.
+
+Letters and Unicode
+Greek Letters
+
+Direct Input: 
+A
+B
+Γ
+Δ
+E
+Z
+H
+Θ
+I
+K
+Λ
+M
+N
+Ξ
+O
+Π
+P
+Σ
+T
+Υ
+Φ
+X
+Ψ
+Ω
+ABΓΔEZHΘIKΛMNΞOΠPΣTΥΦXΨΩ 
+α
+β
+γ
+δ
+ϵ
+ζ
+η
+θ
+ι
+κ
+λ
+μ
+ν
+ξ
+o
+π
+ρ
+σ
+τ
+υ
+ϕ
+χ
+ψ
+ω
+ε
+ϑ
+ϖ
+ϱ
+ς
+φ
+ϝ
+αβγδϵζηθικλμνξoπρστυϕχψωεϑϖϱςφϝ
+
+A
+A \Alpha	
+B
+B \Beta	
+Γ
+Γ \Gamma	
+Δ
+Δ \Delta
+E
+E \Epsilon	
+Z
+Z \Zeta	
+H
+H \Eta	
+Θ
+Θ \Theta
+I
+I \Iota	
+K
+K \Kappa	
+Λ
+Λ \Lambda	
+M
+M \Mu
+N
+N \Nu	
+Ξ
+Ξ \Xi	
+O
+O \Omicron	
+Π
+Π \Pi
+P
+P \Rho	
+Σ
+Σ \Sigma	
+T
+T \Tau	
+Υ
+Υ \Upsilon
+Φ
+Φ \Phi	
+X
+X \Chi	
+Ψ
+Ψ \Psi	
+Ω
+Ω \Omega
+Γ
+Γ \varGamma	
+Δ
+Δ \varDelta	
+Θ
+Θ \varTheta	
+Λ
+Λ \varLambda
+Ξ
+Ξ \varXi	
+Π
+Π \varPi	
+Σ
+Σ \varSigma	
+Υ
+Υ \varUpsilon
+Φ
+Φ \varPhi	
+Ψ
+Ψ \varPsi	
+Ω
+Ω \varOmega	
+α
+α \alpha	
+β
+β \beta	
+γ
+γ \gamma	
+δ
+δ \delta
+ϵ
+ϵ \epsilon	
+ζ
+ζ \zeta	
+η
+η \eta	
+θ
+θ \theta
+ι
+ι \iota	
+κ
+κ \kappa	
+λ
+λ \lambda	
+μ
+μ \mu
+ν
+ν \nu	
+ξ
+ξ \xi	
+ο
+ο \omicron	
+π
+π \pi
+ρ
+ρ \rho	
+σ
+σ \sigma	
+τ
+τ \tau	
+υ
+υ \upsilon
+ϕ
+ϕ \phi	
+χ
+χ \chi	
+ψ
+ψ \psi	
+ω
+ω \omega
+ε
+ε \varepsilon	
+ϰ
+ϰ \varkappa	
+ϑ
+ϑ \vartheta	
+ϑ
+ϑ \thetasym
+ϖ
+ϖ \varpi	
+ϱ
+ϱ \varrho	
+ς
+ς \varsigma	
+φ
+φ \varphi
+ϝ
+ϝ \digamma
+Other Letters
+
+ı
+ \imath	
+∇
+∇ \nabla	
+ℑ
+ℑ \Im	
+R
+R \Reals	
+Œ
+Œ \text{\OE}
+ȷ
+ \jmath	
+∂
+∂ \partial	
+ℑ
+ℑ \image	
+℘
+℘ \wp	
+ø
+ø \text{\o}
+ℵ
+ℵ \aleph	
+⅁
+⅁ \Game	
+k
+k \Bbbk	
+℘
+℘ \weierp	
+Ø
+Ø \text{\O}
+ℵ
+ℵ \alef	
+Ⅎ
+Ⅎ \Finv	
+N
+N \N	
+Z
+Z \Z	
+ß
+ß \text{\ss}
+ℵ
+ℵ \alefsym	
+C
+C \cnums	
+N
+N \natnums	
+a
+˚
+a
+˚
+  \text{\aa}	
+ı
+ı \text{\i}
+ℶ
+ℶ \beth	
+C
+C \Complex	
+R
+R \R	
+A
+˚
+A
+˚
+  \text{\AA}	
+ȷ
+ȷ \text{\j}
+ℷ
+ℷ \gimel	
+ℓ
+ℓ \ell	
+ℜ
+ℜ \Re	
+æ
+æ \text{\ae}
+ℸ
+ℸ \daleth	
+ℏ
+ℏ \hbar	
+ℜ
+ℜ \real	
+Æ
+Æ \text{\AE}
+ð
+ð \eth	
+ℏ
+ℏ \hslash	
+R
+R \reals	
+œ
+œ \text{\oe}
+Direct Input: 
+∂
+∇
+ℑ
+Ⅎ
+ℵ
+ℶ
+ℷ
+ℸ
+⅁
+ℏ
+ð
+−
+∗
+∂∇ℑℲℵℶℷℸ⅁ℏð−∗ ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖÙÚÛÜÝÞßàáâãäåçèéêëìíîïðñòóôöùúûüýþÿ ₊₋₌₍₎₀₁₂₃₄₅₆₇₈₉ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓᵦᵧᵨᵩᵪ⁺⁻⁼⁽⁾⁰¹²³⁴⁵⁶⁷⁸⁹ᵃᵇᶜᵈᵉᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘʷˣʸᶻᵛᵝᵞᵟᵠᵡ
+
+Math-mode Unicode (sub|super)script characters will render as if you had written regular characters in a subscript or superscript. For instance, A²⁺³ will render the same as A^{2+3}.
+
+Unicode Mathematical Alphanumeric Symbols
+
+Item	Range	Item	Range
+Bold	
+𝐀-𝐙 𝐚-𝐳 𝟎-𝟗
+A-Z a-z 0-9	Double-struck	
+𝔸-
+Z
+ 
+𝕜
+A-Z k
+Italic	
+𝐴-𝑍 𝑎-𝑧
+A-Z a-z	Sans serif	
+𝖠-𝖹 𝖺-𝗓 𝟢-𝟫
+A-Z a-z 0-9
+Bold Italic	
+𝑨-𝒁 𝒂-𝒛
+A-Z a-z	Sans serif bold	
+𝗔-𝗭 𝗮-𝘇 𝟬-𝟵
+A-Z a-z 0-9
+Script	
+𝒜-𝒵
+A-Z	Sans serif italic	
+𝘈-𝘡 𝘢-𝘻
+A-Z a-z
+Fraktur	
+𝔄
+-
+Z
+ 
+𝔞
+-
+𝔷
+A-Z a-z	Monospace	
+𝙰-𝚉 𝚊-𝚣 𝟶-𝟿
+A-Z a-z 0-9
+Bold Fraktur	
+𝕬-𝖅 𝖆-𝖟
+A-Z a-z	
+Unicode
+
+The letters listed above will render properly in any KaTeX rendering mode.
+
+In addition, Armenian, Brahmic, Georgian, Chinese, Japanese, and Korean glyphs are always accepted in text mode. However, these glyphs will be rendered from system fonts (not KaTeX-supplied fonts) so their typography may clash. You can provide rules for CSS classes .latin_fallback, .cyrillic_fallback, .brahmic_fallback, .georgian_fallback, .cjk_fallback, and .hangul_fallback to provide fallback fonts for these languages. Use of these glyphs may cause small vertical alignment issues: KaTeX has detailed metrics for listed symbols and most Latin, Greek, and Cyrillic letters, but other accepted glyphs are treated as if they are each as tall as the letter M in the current KaTeX font.
+
+If the KaTeX rendering mode is set to strict: false or strict: "warn" (default), then KaTeX will accept all Unicode letters in both text and math mode. All unrecognized characters will be treated as if they appeared in text mode, and are subject to the same issues of using system fonts and possibly using incorrect vertical alignment.
+
+For Persian composite characters, a user-supplied plug-in is under development.
+
+Any character can be written with the \char function and the Unicode code in hex. For example \char"263a will render as 
+☺
+☺.
+
+Layout
+Annotation
+5
+5
+​
+  \cancel{5}	
+a
++
+b
++
+c
+⏞
+note
+a+b+c
+​
+ 
+note
+​
+  \overbrace{a+b+c}^{\text{note}}
+5
+5
+​
+  \bcancel{5}	
+a
++
+b
++
+c
+⏟
+note
+note
+a+b+c
+​
+ 
+​
+  \underbrace{a+b+c}_{\text{note}}
+A
+B
+C
+ABC
+  \xcancel{ABC}	
+≠
+
+= \not =
+a
+b
+c
+abc
+  \sout{abc}	
+π
+=
+c
+d
+π= 
+d
+c
+​
+ 
+​
+  \boxed{\pi=\frac c d}
+a
+n
+a 
+n
+​
+ 
+​
+  $a_{\angl n}	
+a
+n
+a 
+n
+​
+ 
+​
+  a_\angln
+−
+78
+∘
+−78 
+∘
+ 
+​
+ \phase{-78^\circ}
+\tag{hi} x+y^{2x}
+x
++
+y
+2
+x
+(hi)
+x+y 
+2x
+ (hi)
+
+\tag*{hi} x+y^{2x}
+x
++
+y
+2
+x
+hi
+x+y 
+2x
+ hi
+
+Line Breaks
+KaTeX 0.10.0+ will insert automatic line breaks in inline math after relations or binary operators such as “=” or “+”. These can be suppressed by \nobreak or by placing math inside a pair of braces, as in {F=ma}. \allowbreak will allow automatic line breaks at locations other than relations or operators.
+
+Hard line breaks are \\ and \newline.
+
+In display math, KaTeX does not insert automatic line breaks. It ignores display math hard line breaks when rendering option strict: true.
+
+Vertical Layout
+x
+n
+x 
+n
+​
+  x_n	
+=!
+=
+!
+  \stackrel{!}{=}	
+a
+b
+b
+a
+​
+  a \atop b
+e
+x
+e 
+x
+  e^x	
+=!
+=
+!
+  \overset{!}{=}	
+a
+b
+c
+a 
+b
+ c a\raisebox{0.25em}{$b$}c
+u
+o
+u
+o
+​
+  _u^o	
+=!
+!
+=
+​
+  \underset{!}{=}	
+a
++
+(
+a
+b
+c
+)
+a+( 
+c
+b
+a
+​
+ 
+​
+ 
+​
+ ) a+\left(\vcenter{\hbox{$\frac{\frac a b}c$}}\right)
+∑
+0
+<
+i
+<
+m
+0
+<
+j
+<
+n
+0<i<m
+0<j<n
+​
+ 
+∑
+​
+ 
+\sum_{\substack{0<i<m\\0<j<n}}
+\raisebox and \hbox put their argument into text mode. To raise math, nest $…$ delimiters inside the argument as shown above.
+
+\vcenter can be written without an \hbox if the strict rendering option is false. In that case, omit the nested $…$ delimiters.
+
+Overlap and Spacing
+=
+/
+ 
+=
+/
+ {=}\mathllap{/\,}	
+(
+x
+2
+)
+(x 
+2
+ 
+ ) \left(x^{\smash{2}}\right)
+ 
+/
+=
+/
+= \mathrlap{\,/}{=}	
+y
+y
+ 
+​
+  \sqrt{\smash[b]{y}}
+∑
+1
+≤
+i
+≤
+j
+≤
+n
+x
+i
+j
+1≤i≤j≤n
+∑
+​
+ x 
+ij
+​
+  \sum_{\mathclap{1\le i\le j\le n}} x_{ij}
+
+KaTeX also supports \llap, \rlap, and \clap, but they will take only text, not math, as arguments.
+
+Spacing
+
+Function	Produces	Function	Produces
+\,	³∕₁₈ em space	\kern{distance}	space, width = distance
+\thinspace	³∕₁₈ em space	\mkern{distance}	space, width = distance
+\>	⁴∕₁₈ em space	\mskip{distance}	space, width = distance
+\:	⁴∕₁₈ em space	\hskip{distance}	space, width = distance
+\medspace	⁴∕₁₈ em space	\hspace{distance}	space, width = distance
+\;	⁵∕₁₈ em space	\hspace*{distance}	space, width = distance
+\thickspace	⁵∕₁₈ em space	\phantom{content}	space the width and height of content
+\enspace	½ em space	\hphantom{content}	space the width of content
+\quad	1 em space	\vphantom{content}	a strut the height of content
+\qquad	2 em space	\!	– ³∕₁₈ em space
+~	non-breaking space	\negthinspace	– ³∕₁₈ em space
+\<space>	space	\negmedspace	– ⁴∕₁₈ em space
+\nobreakspace	non-breaking space	\negthickspace	– ⁵∕₁₈ em space
+\space	space	\mathstrut	\vphantom{(}
+Notes:
+
+distance will accept any of the KaTeX units.
+
+\kern, \mkern, \mskip, and \hspace accept unbraced distances, as in: \kern1em.
+
+\mkern and \mskip will not work in text mode and both will write a console warning for any unit except mu.
+
+Logic and Set Theory
+
+∀
+∀ \forall	
+∁
+∁ \complement	
+∴
+∴ \therefore	
+∅
+∅ \emptyset
+∃
+∃ \exists	
+⊂
+⊂ \subset	
+∵
+∵ \because	
+∅
+∅ \empty
+∃
+∃ \exist	
+⊃
+⊃ \supset	
+↦
+↦ \mapsto	
+∅
+∅ \varnothing
+∄
+∄ \nexists	
+∣
+∣ \mid	
+→
+→ \to	
+  
+⟹
+  
+⟹ \implies
+∈
+∈ \in	
+∧
+∧ \land	
+←
+← \gets	
+  
+⟸
+  
+⟸ \impliedby
+∈
+∈ \isin	
+∨
+∨ \lor	
+↔
+↔ \leftrightarrow	
+  
+⟺
+  
+⟺ \iff
+∉
+∈
+/
+ \notin	
+∋
+∋ \ni	
+∌
+
+∋ \notni	
+¬
+¬ \neg or \lnot
+{
+ 
+x
+  
+|
+  
+x
+<
+1
+2
+ 
+}
+{x 
+​
+ x< 
+2
+1
+​
+ }
+\Set{ x | x<\frac 1 2 }	
+{
+ 
+x
+∣
+x
+<
+5
+ 
+}
+{x∣x<5}
+\set{x|x<5}	
+Direct Input: 
+∀
+∴
+∁
+∵
+∃
+∣
+∈
+∉
+∋
+⊂
+⊃
+∧
+∨
+↦
+→
+←
+↔
+¬
+∀∴∁∵∃∣∈∈
+/
+∋⊂⊃∧∨↦→←↔¬ ℂ ℍ ℕ ℙ ℚ ℝ
+
+Macros
+x
+2
++
+x
+2
+x 
+2
+ +x 
+2
+ 	\def\foo{x^2} \foo + \foo
+y
+2
++
+y
+2
+y 
+2
+ +y 
+2
+ 	\gdef\foo#1{#1^2} \foo{y} + \foo{y}
+\edef\macroname#1#2…{definition to be expanded}
+\xdef\macroname#1#2…{definition to be expanded}
+\let\foo=\bar
+\futurelet\foo\bar x
+\global\def\macroname#1#2…{definition}
+\newcommand\macroname[numargs]{definition}
+\renewcommand\macroname[numargs]{definition}
+\providecommand\macroname[numargs]{definition}
+Macros can also be defined in the KaTeX rendering options.
+
+Macros accept up to nine arguments: #1, #2, etc.
+
+Macros defined by \gdef, \xdef, \global\def, \global\edef, \global\let, and \global\futurelet will persist between math expressions. (Exception: macro persistence may be disabled. There are legitimate security reasons for that.)
+
+KaTeX has no \par, so all macros are long by default and \long will be ignored.
+
+Available functions include:
+
+\char \mathchoice \TextOrMath \@ifstar \@ifnextchar \@firstoftwo \@secondoftwo \relax \expandafter \noexpand
+
+@ is a valid character for commands, as if \makeatletter were in effect.
+
+Operators
+Big Operators
+∑
+∑ \sum	
+∏
+∏ \prod	
+⨂
+⨂ \bigotimes	
+⋁
+⋁ \bigvee
+∫
+∫ \int	
+∐
+∐ \coprod	
+⨁
+⨁ \bigoplus	
+⋀
+⋀ \bigwedge
+∬
+∬ \iint	
+∫
+∫ \intop	
+⨀
+⨀ \bigodot	
+⋂
+⋂ \bigcap
+∭
+∭ \iiint	
+∫
+∫ \smallint	
+⨄
+⨄ \biguplus	
+⋃
+⋃ \bigcup
+∮
+∮ \oint	
+∯
+∬
+​
+  \oiint	
+∰
+∭
+​
+  \oiiint	
+⨆
+⨆ \bigsqcup
+Direct Input: 
+∫
+∬
+∭
+∮
+∏
+∐
+∑
+⋀
+⋁
+⋂
+⋃
+⨀
+⨁
+⨂
+⨄
+⨆
+∫∬∭∮∏∐∑⋀⋁⋂⋃⨀⨁⨂⨄⨆ ∯ ∰
+
+Binary Operators
++
++ +	
+⋅
+⋅ \cdot	
+⋗
+⋗ \gtrdot	
+x
+(
+m
+o
+d
+a
+)
+x(moda) x \pmod a
+−
+− -	
+⋅
+⋅ \cdotp	
+⊺
+⊺ \intercal	
+x
+(
+a
+)
+x(a) x \pod a
+/
+/ /	
+⋅
+⋅ \centerdot	
+∧
+∧ \land	
+⊳
+⊳ \rhd
+∗
+∗ *	
+∘
+∘ \circ	
+⋋
+⋋ \leftthreetimes	
+⋌
+⋌ \rightthreetimes
+⨿
+⨿ \amalg	
+⊛
+⊛ \circledast	
+.
+. \ldotp	
+⋊
+⋊ \rtimes
+&
+& \And	
+⊚
+⊚ \circledcirc	
+∨
+∨ \lor	
+∖
+∖ \setminus
+∗
+∗ \ast	
+⊝
+⊝ \circleddash	
+⋖
+⋖ \lessdot	
+∖
+∖ \smallsetminus
+⊼
+⊼ \barwedge	
+⋓
+⋓ \Cup	
+⊲
+⊲ \lhd	
+⊓
+⊓ \sqcap
+◯
+◯ \bigcirc	
+∪
+∪ \cup	
+⋉
+⋉ \ltimes	
+⊔
+⊔ \sqcup
+ 
+mod
+ 
+mod \bmod	
+⋎
+⋎ \curlyvee	
+x
+m
+o
+d
+ 
+ 
+a
+xmoda x\mod a	
+×
+× \times
+⊡
+⊡ \boxdot	
+⋏
+⋏ \curlywedge	
+∓
+∓ \mp	
+⊴
+⊴ \unlhd
+⊟
+⊟ \boxminus	
+÷
+÷ \div	
+⊙
+⊙ \odot	
+⊵
+⊵ \unrhd
+⊞
+⊞ \boxplus	
+⋇
+⋇ \divideontimes	
+⊖
+⊖ \ominus	
+⊎
+⊎ \uplus
+⊠
+⊠ \boxtimes	
+∔
+∔ \dotplus	
+⊕
+⊕ \oplus	
+∨
+∨ \vee
+∙
+∙ \bullet	
+⩞
+⩞ \doublebarwedge	
+⊗
+⊗ \otimes	
+⊻
+⊻ \veebar
+⋒
+⋒ \Cap	
+⋒
+⋒ \doublecap	
+⊘
+⊘ \oslash	
+∧
+∧ \wedge
+∩
+∩ \cap	
+⋓
+⋓ \doublecup	
+±
+± \pm or \plusmn	
+≀
+≀ \wr
+Direct Input: 
++
+−
+/
+∗
+⋅
+∘
+∙
+±
+×
+÷
+∓
+∔
+∧
+∨
+∩
+∪
+≀
+⊎
+⊓
+⊔
+⊕
+⊖
+⊗
+⊘
+⊙
+⊚
+⊛
+⊝
+◯
+∖
++−/∗⋅∘∙±×÷∓∔∧∨∩∪≀⊎⊓⊔⊕⊖⊗⊘⊙⊚⊛⊝◯∖
+
+Fractions and Binomials
+a
+b
+b
+a
+​
+  \frac{a}{b}	
+a
+b
+b
+a
+​
+  \tfrac{a}{b}	
+(
+a
+a
++
+1
+]
+( 
+a+1
+a
+​
+ ] \genfrac ( ] {2pt}{1}a{a+1}
+a
+b
+b
+a
+​
+  {a \over b}	
+a
+b
+b
+a
+​
+  \dfrac{a}{b}	
+a
+b
++
+1
+b+1
+a
+​
+  {a \above{2pt} b+1}
+a
+/
+b
+a/b a/b		
+a
+1
++
+1
+b
+1+ 
+b
+1
+​
+ 
+a
+​
+  \cfrac{a}{1 + \cfrac{1}{b}}
+(
+n
+k
+)
+( 
+k
+n
+​
+ ) \binom{n}{k}	
+(
+n
+k
+)
+( 
+k
+n
+​
+ ) \dbinom{n}{k}	
+{
+n
+k
+}
+{ 
+k
+n
+​
+ } {n\brace k}
+(
+n
+k
+)
+( 
+k
+n
+​
+ ) {n \choose k}	
+(
+n
+k
+)
+( 
+k
+n
+​
+ ) \tbinom{n}{k}	
+[
+n
+k
+]
+[ 
+k
+n
+​
+ ] {n\brack k}
+Math Operators
+arcsin
+⁡
+arcsin \arcsin	
+cosec
+⁡
+cosec \cosec	
+deg
+⁡
+deg \deg	
+sec
+⁡
+sec \sec
+arccos
+⁡
+arccos \arccos	
+cosh
+⁡
+cosh \cosh	
+dim
+⁡
+dim \dim	
+sin
+⁡
+sin \sin
+arctan
+⁡
+arctan \arctan	
+cot
+⁡
+cot \cot	
+exp
+⁡
+exp \exp	
+sinh
+⁡
+sinh \sinh
+arctg
+⁡
+arctg \arctg	
+cotg
+⁡
+cotg \cotg	
+hom
+⁡
+hom \hom	
+sh
+⁡
+sh \sh
+arcctg
+⁡
+arcctg \arcctg	
+coth
+⁡
+coth \coth	
+ker
+⁡
+ker \ker	
+tan
+⁡
+tan \tan
+arg
+⁡
+arg \arg	
+csc
+⁡
+csc \csc	
+lg
+⁡
+lg \lg	
+tanh
+⁡
+tanh \tanh
+ch
+⁡
+ch \ch	
+ctg
+⁡
+ctg \ctg	
+ln
+⁡
+ln \ln	
+tg
+⁡
+tg \tg
+cos
+⁡
+cos \cos	
+cth
+⁡
+cth \cth	
+log
+⁡
+log \log	
+th
+⁡
+th \th
+f
+⁡
+f \operatorname{f}			
+arg max
+⁡
+argmax \argmax	
+inj lim
+⁡
+injlim \injlim	
+min
+⁡
+min \min	
+lim→
+⁡
+lim
+​
+  \varinjlim
+arg min
+⁡
+argmin \argmin	
+lim
+⁡
+lim \lim	
+plim
+⁡
+plim \plim	
+lim‾
+⁡
+lim
+​
+  \varliminf
+det
+⁡
+det \det	
+lim inf
+⁡
+liminf \liminf	
+Pr
+⁡
+Pr \Pr	
+lim‾
+⁡
+lim
+  \varlimsup
+gcd
+⁡
+gcd \gcd	
+lim sup
+⁡
+limsup \limsup	
+proj lim
+⁡
+projlim \projlim	
+lim←
+⁡
+lim
+​
+  \varprojlim
+inf
+⁡
+inf \inf	
+max
+⁡
+max \max	
+sup
+⁡
+sup \sup	
+f
+⁡
+f \operatorname*{f}	
+f
+⁡
+f \operatornamewithlimits{f}		
+Functions in the bottom six rows of this table can take \limits.
+
+\sqrt
+x
+x
+​
+  \sqrt{x}
+
+x
+3
+3
+  
+x
+​
+  \sqrt[3]{x}
+
+Relations
+=!
+=
+!
+  \stackrel{!}{=}
+
+=
+= =	
+≑
+≑ \doteqdot	
+⪅
+⪅ \lessapprox	
+⌣
+⌣ \smile
+<
+< <	
+≖
+≖ \eqcirc	
+⋚
+⋚ \lesseqgtr	
+⊏
+⊏ \sqsubset
+>
+> >	
+∹
+−: \eqcolon or
+\minuscolon	
+⪋
+⪋ \lesseqqgtr	
+⊑
+⊑ \sqsubseteq
+:
+: :	
+−
+∷
+−:: \Eqcolon or
+\minuscoloncolon	
+≶
+≶ \lessgtr	
+⊐
+⊐ \sqsupset
+≈
+≈ \approx	
+≕
+=: \eqqcolon or
+\equalscolon	
+≲
+≲ \lesssim	
+⊒
+⊒ \sqsupseteq
+≈
+:
+≈: \approxcolon	
+=
+∷
+=:: \Eqqcolon or
+\equalscoloncolon	
+≪
+≪ \ll	
+⋐
+⋐ \Subset
+≈
+∷
+≈:: \approxcoloncolon	
+≂
+≂ \eqsim	
+⋘
+⋘ \lll	
+⊂
+⊂ \subset or \sub
+≊
+≊ \approxeq	
+⪖
+⪖ \eqslantgtr	
+⋘
+⋘ \llless	
+⊆
+⊆ \subseteq or \sube
+≍
+≍ \asymp	
+⪕
+⪕ \eqslantless	
+<
+< \lt	
+⫅
+⫅ \subseteqq
+∍
+∍ \backepsilon	
+≡
+≡ \equiv	
+∣
+∣ \mid	
+≻
+≻ \succ
+∽
+∽ \backsim	
+≒
+≒ \fallingdotseq	
+⊨
+⊨ \models	
+⪸
+⪸ \succapprox
+⋍
+⋍ \backsimeq	
+⌢
+⌢ \frown	
+⊸
+⊸ \multimap	
+≽
+≽ \succcurlyeq
+≬
+≬ \between	
+≥
+≥ \ge	
+⊶
+⊶ \origof	
+⪰
+⪰ \succeq
+⋈
+⋈ \bowtie	
+≥
+≥ \geq	
+∋
+∋ \owns	
+≿
+≿ \succsim
+≏
+≏ \bumpeq	
+≧
+≧ \geqq	
+∥
+∥ \parallel	
+⋑
+⋑ \Supset
+≎
+≎ \Bumpeq	
+⩾
+⩾ \geqslant	
+⊥
+⊥ \perp	
+⊃
+⊃ \supset
+≗
+≗ \circeq	
+≫
+≫ \gg	
+⋔
+⋔ \pitchfork	
+⊇
+⊇ \supseteq or \supe
+:
+≈
+:≈ \colonapprox	
+⋙
+⋙ \ggg	
+≺
+≺ \prec	
+⫆
+⫆ \supseteqq
+∷
+≈
+::≈ \Colonapprox or
+\coloncolonapprox	
+⋙
+⋙ \gggtr	
+⪷
+⪷ \precapprox	
+≈
+≈ \thickapprox
+:
+−
+:− \coloneq or
+\colonminus	
+>
+> \gt	
+≼
+≼ \preccurlyeq	
+∼
+∼ \thicksim
+∷
+−
+::− \Coloneq or
+\coloncolonminus	
+⪆
+⪆ \gtrapprox	
+⪯
+⪯ \preceq	
+⊴
+⊴ \trianglelefteq
+≔
+:= \coloneqq or
+\colonequals	
+⋛
+⋛ \gtreqless	
+≾
+≾ \precsim	
+≜
+≜ \triangleq
+∷
+=
+::= \Coloneqq or
+\coloncolonequals	
+⪌
+⪌ \gtreqqless	
+∝
+∝ \propto	
+⊵
+⊵ \trianglerighteq
+:
+∼
+:∼ \colonsim	
+≷
+≷ \gtrless	
+≓
+≓ \risingdotseq	
+∝
+∝ \varpropto
+∷
+∼
+::∼ \Colonsim or
+\coloncolonsim	
+≳
+≳ \gtrsim	
+∣
+∣ \shortmid	
+△
+△ \vartriangle
+≅
+≅ \cong	
+⊷
+⊷ \imageof	
+∥
+∥ \shortparallel	
+⊲
+⊲ \vartriangleleft
+⋞
+⋞ \curlyeqprec	
+∈
+∈ \in or \isin	
+∼
+∼ \sim	
+⊳
+⊳ \vartriangleright
+⋟
+⋟ \curlyeqsucc	
+⋈
+⋈ \Join	
+∼
+:
+∼: \simcolon	
+:
+: \vcentcolon or
+\ratio
+⊣
+⊣ \dashv	
+≤
+≤ \le	
+∼
+∷
+∼:: \simcoloncolon	
+⊢
+⊢ \vdash
+∷
+:: \dblcolon or
+\coloncolon	
+≤
+≤ \leq	
+≃
+≃ \simeq	
+⊨
+⊨ \vDash
+≐
+≐ \doteq	
+≦
+≦ \leqq	
+⌢
+⌢ \smallfrown	
+⊩
+⊩ \Vdash
+≑
+≑ \Doteq	
+⩽
+⩽ \leqslant	
+⌣
+⌣ \smallsmile	
+⊪
+⊪ \Vvdash
+Direct Input: 
+=
+<
+>
+:
+∈
+∋
+∝
+∼
+∽
+≂
+≃
+≅
+≈
+≊
+≍
+≎
+≏
+≐
+≑
+≒
+≓
+≖
+≗
+≜
+≡
+≤
+≥
+≦
+≧
+≫
+≬
+≳
+≷
+≺
+≻
+≼
+≽
+≾
+≿
+⊂
+⊃
+⊆
+⊇
+⊏
+⊐
+⊑
+⊒
+⊢
+⊣
+⊩
+⊪
+⊸
+⋈
+⋍
+⋐
+⋑
+⋔
+⋙
+⋛
+⋞
+⋟
+⌢
+⌣
+⩾
+⪆
+⪌
+⪕
+⪖
+⪯
+⪰
+⪷
+⪸
+⫅
+⫆
+≲
+⩽
+⪅
+≶
+⋚
+⪋
+⊥
+⊨
+⊶
+⊷
+=<>:∈∋∝∼∽≂≃≅≈≊≍≎≏≐≑≒≓≖≗≜≡≤≥≦≧≫≬≳≷≺≻≼≽≾≿⊂⊃⊆⊇⊏⊐⊑⊒⊢⊣⊩⊪⊸⋈⋍⋐⋑⋔⋙⋛⋞⋟⌢⌣⩾⪆⪌⪕⪖⪯⪰⪷⪸⫅⫆≲⩽⪅≶⋚⪋⊥⊨⊶⊷ ≔ ≕ ⩴
+
+Negated Relations
+≠
+
+= \not =
+
+⪊
+⪊ \gnapprox	
+≱
+ \ngeqslant	
+⊈
+⊈ \nsubseteq	
+⪵
+⪵ \precneqq
+⪈
+⪈ \gneq	
+≯
+≯ \ngtr	
+⊈
+ \nsubseteqq	
+⋨
+⋨ \precnsim
+≩
+≩ \gneqq	
+≰
+≰ \nleq	
+⊁
+⊁ \nsucc	
+⊊
+⊊ \subsetneq
+⋧
+⋧ \gnsim	
+≰
+ \nleqq	
+⋡
+⋡ \nsucceq	
+⫋
+⫋ \subsetneqq
+≩
+ \gvertneqq	
+≰
+ \nleqslant	
+⊉
+⊉ \nsupseteq	
+⪺
+⪺ \succnapprox
+⪉
+⪉ \lnapprox	
+≮
+≮ \nless	
+⊉
+ \nsupseteqq	
+⪶
+⪶ \succneqq
+⪇
+⪇ \lneq	
+∤
+∤ \nmid	
+⋪
+⋪ \ntriangleleft	
+⋩
+⋩ \succnsim
+≨
+≨ \lneqq	
+∉
+∈
+/
+ \notin	
+⋬
+⋬ \ntrianglelefteq	
+⊋
+⊋ \supsetneq
+⋦
+⋦ \lnsim	
+∌
+
+∋ \notni	
+⋫
+⋫ \ntriangleright	
+⫌
+⫌ \supsetneqq
+≨
+ \lvertneqq	
+∦
+∦ \nparallel	
+⋭
+⋭ \ntrianglerighteq	
+⊊
+ \varsubsetneq
+≆
+≆ \ncong	
+⊀
+⊀ \nprec	
+⊬
+⊬ \nvdash	
+⫋
+ \varsubsetneqq
+≠
+
+= \ne	
+⋠
+⋠ \npreceq	
+⊭
+⊭ \nvDash	
+⊋
+ \varsupsetneq
+≠
+
+= \neq	
+∤
+ \nshortmid	
+⊯
+⊯ \nVDash	
+⫌
+ \varsupsetneqq
+≱
+≱ \ngeq	
+∦
+ \nshortparallel	
+⊮
+⊮ \nVdash
+≱
+ \ngeqq	
+≁
+≁ \nsim	
+⪹
+⪹ \precnapprox
+Direct Input: 
+∉
+∌
+∤
+∦
+≁
+≆
+≠
+≨
+≩
+≮
+≯
+≰
+≱
+⊀
+⊁
+⊈
+⊉
+⊊
+⊋
+⊬
+⊭
+⊮
+⊯
+⋠
+⋡
+⋦
+⋧
+⋨
+⋩
+⋬
+⋭
+⪇
+⪈
+⪉
+⪊
+⪵
+⪶
+⪹
+⪺
+⫋
+⫌
+∈
+/
+
+∋∤∦≁≆
+
+=≨≩≮≯≰≱⊀⊁⊈⊉⊊⊋⊬⊭⊮⊯⋠⋡⋦⋧⋨⋩⋬⋭⪇⪈⪉⪊⪵⪶⪹⪺⫋⫌
+
+Arrows
+↺
+↺ \circlearrowleft	
+↼
+↼ \leftharpoonup	
+⇒
+⇒ \rArr
+↻
+↻ \circlearrowright	
+⇇
+⇇ \leftleftarrows	
+→
+→ \rarr
+↶
+↶ \curvearrowleft	
+↔
+↔ \leftrightarrow	
+↾
+↾ \restriction
+↷
+↷ \curvearrowright	
+⇔
+⇔ \Leftrightarrow	
+→
+→ \rightarrow
+⇓
+⇓ \Darr	
+⇆
+⇆ \leftrightarrows	
+⇒
+⇒ \Rightarrow
+⇓
+⇓ \dArr	
+⇋
+⇋ \leftrightharpoons	
+↣
+↣ \rightarrowtail
+↓
+↓ \darr	
+↭
+↭ \leftrightsquigarrow	
+⇁
+⇁ \rightharpoondown
+⇠
+⇠ \dashleftarrow	
+⇚
+⇚ \Lleftarrow	
+⇀
+⇀ \rightharpoonup
+⇢
+⇢ \dashrightarrow	
+⟵
+⟵ \longleftarrow	
+⇄
+⇄ \rightleftarrows
+↓
+↓ \downarrow	
+⟸
+⟸ \Longleftarrow	
+⇌
+⇌ \rightleftharpoons
+⇓
+⇓ \Downarrow	
+⟷
+⟷ \longleftrightarrow	
+⇉
+⇉ \rightrightarrows
+⇊
+⇊ \downdownarrows	
+⟺
+⟺ \Longleftrightarrow	
+⇝
+⇝ \rightsquigarrow
+⇃
+⇃ \downharpoonleft	
+⟼
+⟼ \longmapsto	
+⇛
+⇛ \Rrightarrow
+⇂
+⇂ \downharpoonright	
+⟶
+⟶ \longrightarrow	
+↱
+↱ \Rsh
+←
+← \gets	
+⟹
+⟹ \Longrightarrow	
+↘
+↘ \searrow
+⇔
+⇔ \Harr	
+↫
+↫ \looparrowleft	
+↙
+↙ \swarrow
+⇔
+⇔ \hArr	
+↬
+↬ \looparrowright	
+→
+→ \to
+↔
+↔ \harr	
+⇔
+⇔ \Lrarr	
+↞
+↞ \twoheadleftarrow
+↩
+↩ \hookleftarrow	
+⇔
+⇔ \lrArr	
+↠
+↠ \twoheadrightarrow
+↪
+↪ \hookrightarrow	
+↔
+↔ \lrarr	
+⇑
+⇑ \Uarr
+  
+⟺
+  
+⟺ \iff	
+↰
+↰ \Lsh	
+⇑
+⇑ \uArr
+  
+⟸
+  
+⟸ \impliedby	
+↦
+↦ \mapsto	
+↑
+↑ \uarr
+  
+⟹
+  
+⟹ \implies	
+↗
+↗ \nearrow	
+↑
+↑ \uparrow
+⇐
+⇐ \Larr	
+↚
+↚ \nleftarrow	
+⇑
+⇑ \Uparrow
+⇐
+⇐ \lArr	
+⇍
+⇍ \nLeftarrow	
+↕
+↕ \updownarrow
+←
+← \larr	
+↮
+↮ \nleftrightarrow	
+⇕
+⇕ \Updownarrow
+⇝
+⇝ \leadsto	
+⇎
+⇎ \nLeftrightarrow	
+↿
+↿ \upharpoonleft
+←
+← \leftarrow	
+↛
+↛ \nrightarrow	
+↾
+↾ \upharpoonright
+⇐
+⇐ \Leftarrow	
+⇏
+⇏ \nRightarrow	
+⇈
+⇈ \upuparrows
+↢
+↢ \leftarrowtail	
+↖
+↖ \nwarrow
+↽
+↽ \leftharpoondown	
+⇒
+⇒ \Rarr
+Direct Input: 
+←
+↑
+→
+↓
+↔
+↕
+↖
+↗
+↘
+↙
+↚
+↛
+↞
+↠
+↢
+↣
+↦
+↩
+↪
+↫
+↬
+↭
+↮
+↰
+↱
+↶
+↷
+↺
+↻
+↼
+↽
+↾
+↾
+↿
+⇀
+⇁
+⇂
+⇃
+⇄
+⇆
+⇇
+⇈
+⇉
+⇊
+⇋
+⇌
+⇍
+⇎
+⇏
+⇐
+⇑
+⇒
+⇓
+⇔
+⇕
+⇚
+⇛
+⇝
+⇠
+⇢
+⟵
+⟶
+⟷
+⟸
+⟹
+⟺
+⟼
+←↑→↓↔↕↖↗↘↙↚↛↞↠↢↣↦↩↪↫↬↭↮↰↱↶↷↺↻↼↽↾↾↿⇀⇁⇂⇃⇄⇆⇇⇈⇉⇊⇋⇌⇍⇎⇏⇐⇑⇒⇓⇔⇕⇚⇛⇝⇠⇢⟵⟶⟷⟸⟹⟺⟼ ↽
+
+Extensible Arrows
+
+←
+a
+b
+c
+abc
+​
+  \xleftarrow{abc}	
+→
+u
+n
+d
+e
+r
+o
+v
+e
+r
+over
+under
+​
+  \xrightarrow[under]{over}
+⇐
+a
+b
+c
+abc
+​
+  \xLeftarrow{abc}	
+⇒
+a
+b
+c
+abc
+​
+  \xRightarrow{abc}
+↔
+a
+b
+c
+abc
+​
+  \xleftrightarrow{abc}	
+⇔
+a
+b
+c
+abc
+​
+  \xLeftrightarrow{abc}
+↩
+a
+b
+c
+abc
+​
+  \xhookleftarrow{abc}	
+↪
+a
+b
+c
+abc
+​
+  \xhookrightarrow{abc}
+↞
+a
+b
+c
+abc
+  \xtwoheadleftarrow{abc}	
+↠
+a
+b
+c
+abc
+  \xtwoheadrightarrow{abc}
+↼
+a
+b
+c
+abc
+​
+  \xleftharpoonup{abc}	
+⇀
+a
+b
+c
+abc
+​
+  \xrightharpoonup{abc}
+↽
+a
+b
+c
+abc
+​
+  \xleftharpoondown{abc}	
+⇁
+a
+b
+c
+abc
+​
+  \xrightharpoondown{abc}
+⇋
+a
+b
+c
+abc
+​
+  \xleftrightharpoons{abc}	
+⇌
+a
+b
+c
+abc
+​
+  \xrightleftharpoons{abc}
+⇄
+a
+b
+c
+abc
+​
+  \xtofrom{abc}	
+↦
+a
+b
+c
+abc
+​
+  \xmapsto{abc}
+=
+a
+b
+c
+abc
+  \xlongequal{abc}
+Extensible arrows all can take an optional argument in the same manner
+as \xrightarrow[under]{over}.
+
+Special Notation
+Bra-ket Notation
+
+⟨
+ϕ
+∣
+⟨ϕ∣ \bra{\phi}	
+∣
+ψ
+⟩
+∣ψ⟩ \ket{\psi}	
+⟨
+ϕ
+∣
+ψ
+⟩
+⟨ϕ∣ψ⟩ \braket{\phi|\psi}
+⟨
+ϕ
+∣
+⟨ϕ∣ \Bra{\phi}	
+∣
+ψ
+⟩
+∣ψ⟩ \Ket{\psi}	
+⟨
+ϕ
+ 
+|
+ 
+∂
+2
+∂
+t
+2
+ 
+|
+ 
+ψ
+⟩
+⟨ϕ 
+​
+  
+∂t 
+2
+ 
+∂ 
+2
+ 
+​
+  
+​
+ ψ⟩ \Braket{ ϕ | \frac{∂^2}{∂ t^2} | ψ }
+Style, Color, Size, and Font
+Class Assignment
+
+\mathbin \mathclose \mathinner \mathop
+\mathopen \mathord \mathpunct \mathrel
+
+Color
+
+F
+=
+m
+a
+F=ma \color{blue} F=ma
+
+Note that \color acts like a switch. Other color functions expect the content to be a function argument:
+
+F
+=
+m
+a
+F=ma \textcolor{blue}{F=ma}
+F
+=
+m
+a
+F=ma \textcolor{#228B22}{F=ma}
+F
+=
+m
+a
+F=ma
+​
+  \colorbox{aqua}{$F=ma$}
+F
+=
+m
+a
+F=ma
+​
+  \fcolorbox{red}{aqua}{$F=ma$}
+
+Note that, as in LaTeX, \colorbox & \fcolorbox renders its third argument as text, so you may want to switch back to math mode with $ as in the examples above.
+
+For color definition, KaTeX color functions will accept the standard HTML predefined color names. They will also accept an RGB argument in CSS hexa­decimal style. The "#" is optional before a six-digit specification.
+
+Font
+
+A
+b
+0
+Ab0 \mathrm{Ab0}	
+A
+b
+0
+Ab0 \mathbf{Ab0}	
+A
+b
+0
+Ab0 \mathsf{Ab0}
+A
+b
+0
+Ab0 \mathnormal{Ab0}	
+Ab0
+Ab0 \textbf{Ab0}	
+Ab0
+Ab0 \textsf{Ab0}
+Ab0
+Ab0 \textrm{Ab0}	
+A
+b
+0
+Ab0 \bf Ab0	
+A
+b
+0
+Ab0 \sf Ab0
+A
+b
+0
+Ab0 \rm Ab0	
+A
+b
+0
+Ab0 \bold{Ab0}	
+A
+b
+0
+Ab0 \mathsfit{Ab0}
+Ab0
+Ab0 \textnormal{Ab0}	
+Ab0
+Ab0 \boldsymbol{Ab0}	
+A
+B
+AB \Bbb{AB}
+Ab0
+Ab0 \text{Ab0}	
+Ab0
+Ab0 \bm{Ab0}	
+A
+B
+AB \mathbb{AB}
+Ab0
+Ab0 \textup{Ab0}	
+Ab0
+Ab0 \textmd{Ab0}	
+A
+b
+0
+Ab0 \frak{Ab0}
+A
+b
+0
+Ab0 \mathit{Ab0}	
+A
+b
+0
+Ab0 \mathtt{Ab0}	
+A
+b
+0
+Ab0 \mathfrak{Ab0}
+Ab0
+Ab0 \textit{Ab0}	
+Ab0
+Ab0 \texttt{Ab0}	
+A
+B
+0
+AB0 \mathcal{AB0}
+A
+b
+0
+Ab0 \it Ab0	
+A
+b
+0
+Ab0 \tt Ab0	
+A
+B
+0
+AB0 \cal AB0
+Ab0
+Ab0 \emph{Ab0}		
+A
+B
+AB \mathscr{AB}
+One can stack font family, font weight, and font shape by using the \textXX versions of the font functions. So \textsf{\textbf{H}} will produce 
+H
+H. The other versions do not stack, e.g., \mathsf{\mathbf{H}} will produce 
+H
+H.
+
+In cases where KaTeX fonts do not have a bold glyph, \pmb can simulate one. For example, \pmb{\mu} renders as : 
+μ
+μ
+
+Size
+
+A
+B
+AB \Huge AB	
+A
+B
+AB \normalsize AB
+A
+B
+AB \huge AB	
+A
+B
+AB \small AB
+A
+B
+AB \LARGE AB	
+A
+B
+AB \footnotesize AB
+A
+B
+AB \Large AB	
+A
+B
+AB \scriptsize AB
+A
+B
+AB \large AB	
+A
+B
+AB \tiny AB
+Style
+
+∑
+i
+=
+1
+n
+i=1
+∑
+n
+​
+  \displaystyle\sum_{i=1}^n
+∑
+i
+=
+1
+n
+∑ 
+i=1
+n
+​
+  \textstyle\sum_{i=1}^n
+x
+x \scriptstyle x         (The size of a first sub/superscript)
+x
+x \scriptscriptstyle x (The size of subsequent sub/superscripts)
+lim
+⁡
+x
+x
+lim
+​
+  \lim\limits_x
+lim
+⁡
+x
+lim 
+x
+​
+  \lim\nolimits_x
+x^2
+x^2 \verb!x^2!
+\text{…} will accept nested $…$ fragments and render them in math mode.
+
+Symbols and Punctuation
+% comment	
+…
+… \dots	
+KaTeX
+K 
+A
+ T 
+E
+​
+ X \KaTeX
+%
+% \%	
+⋯
+⋯ \cdots	
+LaTeX
+L 
+A
+ T 
+E
+​
+ X \LaTeX
+#
+# \#	
+⋱
+⋱ \ddots	
+TeX
+T 
+E
+​
+ X \TeX
+&
+& \&	
+…
+… \ldots	
+∇
+∇ \nabla
+_
+_ \_	
+⋮
+⋮ \vdots	
+∞
+∞ \infty
+_
+_ \text{\textunderscore}	
+⋯
+⋯ \dotsb	
+∞
+∞ \infin
+–
+– \text{--}	
+…
+… \dotsc	
+✓
+✓ \checkmark
+–
+– \text{\textendash}	
+ ⁣
+⋯
+⋯ \dotsi	
+†
+† \dag
+—
+— \text{---}	
+⋯
+⋯ \dotsm	
+†
+† \dagger
+—
+— \text{\textemdash}	
+…
+… \dotso	
+†
+† \text{\textdagger}
+~
+~ \text{\textasciitilde}	
+⋅
+⋅ \sdot	
+‡
+‡ \ddag
+^
+^ \text{\textasciicircum}	
+…
+… \mathellipsis	
+‡
+‡ \ddagger
+‘
+‘ `	
+…
+… \text{\textellipsis}	
+‡
+‡ \text{\textdaggerdbl}
+‘
+‘ text{\textquoteleft}	
+□
+□ \Box	
+‡
+‡ \Dagger
+‘
+‘ \lq	
+□
+□ \square	
+∠
+∠ \angle
+’
+’ \text{\textquoteright}	
+■
+■ \blacksquare	
+∡
+∡ \measuredangle
+′
+′
+  \rq	
+△
+△ \triangle	
+∢
+∢ \sphericalangle
+“
+“ \text{\textquotedblleft}	
+▽
+▽ \triangledown	
+⊤
+⊤ \top
+"
+" "	
+◃
+◃ \triangleleft	
+⊥
+⊥ \bot
+”
+” \text{\textquotedblright}	
+▹
+▹ \triangleright	
+$
+$ \$
+ ⁣
+:
+: \colon	
+▽
+▽ \bigtriangledown	
+$
+$ \text{\textdollar}
+‵
+‵ \backprime	
+△
+△ \bigtriangleup	
+£
+£ \pounds
+′
+′ \prime	
+▲
+▲ \blacktriangle	
+£
+£ \mathsterling
+<
+< \text{\textless}	
+▼
+▼ \blacktriangledown	
+£
+£ \text{\textsterling}
+>
+> \text{\textgreater}	
+◀
+◀ \blacktriangleleft	
+¥
+¥ \yen
+|
+| \text{\textbar}	
+▶
+▶ \blacktriangleright	
+√
+√ \surd
+∥
+∥ \text{\textbardbl}	
+⋄
+⋄ \diamond	
+°
+° \degree
+{
+{ \text{\textbraceleft}	
+◊
+◊ \Diamond	
+°
+° \text{\textdegree}
+}
+} \text{\textbraceright}	
+◊
+◊ \lozenge	
+℧
+℧ \mho
+\
+\ \text{\textbackslash}	
+⧫
+⧫ \blacklozenge	
+╲
+╲ \diagdown
+¶
+¶ \text{\P} or \P	
+⋆
+⋆ \star	
+╱
+╱ \diagup
+§
+§ \text{\S} or \S	
+★
+★ \bigstar	
+♭
+♭ \flat
+§
+§ \text{\sect}	
+♣
+♣ \clubsuit	
+♮
+♮ \natural
+©
+c
+◯
+  \copyright	
+♣
+♣ \clubs	
+♯
+♯ \sharp
+®
+® \circledR	
+♢
+♢ \diamondsuit	
+♡
+♡ \heartsuit
+®
+R
+◯
+  \text{\textregistered}	
+♢
+♢ \diamonds	
+♡
+♡ \hearts
+Ⓢ
+Ⓢ \circledS	
+♠
+♠ \spadesuit	
+♠
+♠ \spades
+a
+◯
+a
+◯
+  \text{\textcircled a}	
+✠
+✠ \maltese	
+⦵
+∘
+− \minuso
+Direct Input: § ¶ 
+£
+¥
+∇
+∞
+⋅
+∠
+∡
+∢
+♠
+♡
+♢
+♣
+♭
+♮
+♯
+✓
+…
+⋮
+⋯
+⋱
+!
+£¥∇∞⋅∠∡∢♠♡♢♣♭♮♯✓…⋮⋯⋱! ‼ ⦵
+
+Units
+In KaTeX, units are proportioned as they are in TeX.
+KaTeX units are different than CSS units.
+
+KaTeX Unit	Value	KaTeX Unit	Value
+em	CSS em	bp	1/72​ inch × F × G
+ex	CSS ex	pc	12 KaTeX pt
+mu	1/18 CSS em	dd	1238/1157​ KaTeX pt
+pt	1/72.27 inch × F × G	cc	14856/1157 KaTeX pt
+mm	1 mm × F × G	nd	685/642 KaTeX pt
+cm	1 cm × F × G	nc	1370/107​ KaTeX pt
+in	1 inch × F × G	sp	1/65536 KaTeX pt
+where:
+
+F = (font size of surrounding HTML text)/(10 pt)
+
+G = 1.21 by default, because KaTeX font-size is normally 1.21 × the surrounding font size. This value can be overridden by the CSS of an HTML page.
+
+The effect of style and size:
+
+Unit	textstyle	scriptscript	huge
+em or ex	
+mu	
+others	

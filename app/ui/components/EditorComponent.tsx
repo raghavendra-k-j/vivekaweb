@@ -3,7 +3,6 @@ import { Editor } from '@tinymce/tinymce-react';
 import katex from 'katex';
 
 
-
 const EditorComponent: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
 

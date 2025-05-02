@@ -10,7 +10,7 @@ import {
 
 import type { Route } from "./+types/root";
 import ErrorPage from "./ui/components/errors/ErrorPage";
-import "./ui/ds/core/core.scss";
+import "./ui/ds/core/core.css";
 
 
 export const links: Route.LinksFunction = () => [
@@ -36,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" />
       </head>
-      <body>
+      <body className="p-3">
         {children}
         <ScrollRestoration />
         <Scripts />

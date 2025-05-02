@@ -1,61 +1,69 @@
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
-import { logger } from './../../app/core/utils/logger';
 import type { DsToken } from '~/ui/ds/core/tokens';
-import { log } from 'console';
-
-
+import { dsLogger } from './ds';
 
 function camelToKebab(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-function generateScssVariables(obj: any, prefix = '$'): string[] {
-  let scssLines: string[] = [];
+// Generate CSS Custom Properties (variables) instead of SCSS variables
+function generateCssVariables(obj: any, prefix = '--'): string[] {
+  let cssLines: string[] = [];
 
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       const value = obj[key];
       const kebabKey = camelToKebab(key);
-      const scssVarName = `${prefix}${kebabKey}`;
+      const cssVarName = `${prefix}${kebabKey}`;
 
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        scssLines = scssLines.concat(generateScssVariables(value, `${scssVarName}-`));
+        // Recursively handle nested objects
+        cssLines = cssLines.concat(generateCssVariables(value, `${cssVarName}-`));
       } else {
-        scssLines.push(`${scssVarName}: ${value};`);
+        // Add the variable to the list (with value)
+        cssLines.push(`${cssVarName}: ${value};`);
       }
     }
   }
 
-  return scssLines;
+  return cssLines;
 }
 
-export async function generateScssFile(dsTokens: DsToken[], outputFilePath: string): Promise<void> {
+export async function generateCssFile(dsTokens: DsToken[], outputFilePath: string): Promise<void> {
   if (!dsTokens || !Array.isArray(dsTokens)) {
-    logger.error('Invalid tokens array.');
+    dsLogger.error('Invalid tokens array.');
     return;
   }
 
-  logger.info(`Generating SCSS file at: ${dsTokens}`);
+  dsLogger.debug(`Generating CSS file at: ${outputFilePath}`);
 
-  const scssLines: string[] = [];
+  const cssLines: string[] = [];
+
+  // Start the :root selector for global custom properties
+  cssLines.push(':root {');
 
   for (const dsToken of dsTokens) {
     const name = dsToken.name;
-    const value =  dsToken.value;
-    logger.debug(`Processing token: ${name}`);
+    const value = dsToken.value;
+    dsLogger.debug(`Processing token: ${name}`);
     if (value && typeof value === 'object') {
-      scssLines.push(...generateScssVariables(value, `$${name}-`));
+      // If token value is an object, handle nested properties
+      cssLines.push(...generateCssVariables(value, `--${name}-`));
     } else {
-      logger.warn(`Skipping invalid token: ${name}`);
+      // Handle token as a direct variable
+      cssLines.push(`--${name}: ${value};`);
     }
   }
 
-  const scssContent = `${scssLines.join('\n')}\n`;
+  // End the :root selector
+  cssLines.push('}');
+
+  const cssContent = `${cssLines.join('\n')}\n`;
 
   const outputDir = path.dirname(outputFilePath);
   await mkdir(outputDir, { recursive: true });
-  await writeFile(outputFilePath, scssContent, 'utf8');
+  await writeFile(outputFilePath, cssContent, 'utf8');
 
-  logger.info(`SCSS file generated successfully: ${outputFilePath}`);
+  dsLogger.debug(`CSS file generated successfully: ${outputFilePath}`);
 }

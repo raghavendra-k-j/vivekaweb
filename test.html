@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block-Based Rich Text Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Style for the main editor container */
+        #block-editor-container {
+            border: 1px solid #d1d5db; /* gray-300 */
+            border-radius: 0.375rem; /* rounded-md */
+            padding: 1rem; /* p-4 */
+            min-height: 250px;
+            background-color: #ffffff; /* white */
+        }
+
+        /* Style for individual editable blocks */
+        .editor-block {
+            border: 1px dashed #e5e7eb; /* gray-200 */
+            padding: 0.75rem; /* p-3 */
+            margin-bottom: 0.75rem; /* mb-3 */
+            min-height: 40px; /* Ensure block has some height */
+            outline: none; /* Remove default focus outline */
+            border-radius: 0.25rem; /* rounded-sm */
+            background-color: #f9fafb; /* gray-50 */
+            /* Allow lists to render correctly */
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+         /* Ensure lists inside blocks have proper styling */
+        .editor-block ul, .editor-block ol {
+            margin-left: 1.5em; /* Indent lists */
+            padding-left: 0; /* Reset padding */
+            list-style-position: outside; /* Bullets/numbers outside */
+        }
+        .editor-block ul {
+            list-style-type: disc;
+        }
+        .editor-block ol {
+            list-style-type: decimal;
+        }
+
+
+        /* Style for focused block */
+        .editor-block:focus {
+            border-color: #3b82f6; /* blue-500 */
+            border-style: solid;
+            box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.5); /* Focus ring */
+            background-color: #ffffff; /* white */
+        }
+
+        /* Style placeholder for empty blocks */
+        .editor-block[contenteditable=true]:empty:before {
+            content: attr(placeholder);
+            pointer-events: none;
+            color: #9ca3af; /* gray-400 */
+            display: block;
+        }
+
+        /* Style for the output JSON area */
+        #json-output {
+            white-space: pre-wrap; /* Wrap long lines */
+            word-wrap: break-word; /* Break long words */
+            background-color: #1f2937; /* gray-800 */
+            color: #f3f4f6; /* gray-100 */
+            padding: 1rem;
+            border-radius: 0.375rem; /* rounded-md */
+            margin-top: 1rem; /* mt-4 */
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-4 text-center text-gray-700">Block-Based Editor</h1>
+
+        <div class="toolbar bg-gray-200 p-2 rounded-t-lg border border-gray-300 border-b-0 flex flex-wrap items-center space-x-2 mb-0">
+            <span class="font-semibold mr-2 text-gray-600">Format:</span>
+            <button id="boldBtn" title="Bold" class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold">B</button>
+            <button id="italicBtn" title="Italic" class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 italic">I</button>
+            <button id="underlineBtn" title="Underline" class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 underline">U</button>
+            <button id="orderedListBtn" title="Ordered List" class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400">OL</button>
+            <button id="unorderedListBtn" title="Unordered List" class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400">UL</button>
+            <div class="flex-grow"></div> <button id="addBlockBtn" class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                + Add Paragraph Block
+            </button>
+        </div>
+
+        <div id="block-editor-container" class="rounded-b-lg border border-gray-300 border-t-0">
+            </div>
+
+        <div class="mt-6 text-center">
+            <button id="outputJsonBtn" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">
+                Generate JSON Output
+            </button>
+        </div>
+        <div id="json-output-container" class="mt-4 hidden">
+             <h3 class="text-lg font-semibold mb-2 text-gray-700">JSON Output:</h3>
+             <pre id="json-output"></pre>
+        </div>
+
+    </div>
+
+    <script>
+        // Get container and button elements
+        const editorContainer = document.getElementById('block-editor-container');
+        const boldBtn = document.getElementById('boldBtn');
+        const italicBtn = document.getElementById('italicBtn');
+        const underlineBtn = document.getElementById('underlineBtn');
+        const orderedListBtn = document.getElementById('orderedListBtn'); // New
+        const unorderedListBtn = document.getElementById('unorderedListBtn'); // New
+        const addBlockBtn = document.getElementById('addBlockBtn');
+        const outputJsonBtn = document.getElementById('outputJsonBtn');
+        const jsonOutputContainer = document.getElementById('json-output-container');
+        const jsonOutputPre = document.getElementById('json-output');
+
+        let blockCounter = 0; // Counter for unique block IDs
+        let focusedBlock = null; // Keep track of the currently focused block
+
+        /**
+         * Sets focus to an element and moves the cursor to the end.
+         * @param {HTMLElement} element - The element to focus.
+         */
+        function focusAndMoveCursorToEnd(element) {
+            if (!element) return;
+            element.focus();
+            // Create a range
+            const range = document.createRange();
+            // Select the entire content of the element
+            range.selectNodeContents(element);
+            // Collapse the range to the end point (false means collapse to end)
+            range.collapse(false);
+            // Get the current selection
+            const selection = window.getSelection();
+            // Remove any existing selections
+            selection.removeAllRanges();
+            // Add the new range, placing the cursor at the end
+            selection.addRange(range);
+        }
+
+
+        /**
+         * Creates and adds a new editable block to the editor.
+         * @param {string} type - The type of block (e.g., 'paragraph').
+         * @param {string} [initialContent=''] - Optional initial HTML content for the block.
+         * @param {HTMLElement} [insertBeforeNode=null] - Optional node to insert the new block before.
+         */
+        function addBlock(type = 'paragraph', initialContent = '', insertBeforeNode = null) {
+            blockCounter++;
+            const blockId = `block-${blockCounter}`;
+
+            const block = document.createElement('div');
+            block.id = blockId;
+            block.classList.add('editor-block');
+            block.setAttribute('contenteditable', 'true');
+            block.setAttribute('data-type', type); // Store block type
+            block.setAttribute('placeholder', 'Type here...');
+            block.innerHTML = initialContent; // Set initial content if provided
+
+            // --- Event Listeners for the Block ---
+
+            // Track focus
+            block.addEventListener('focus', () => {
+                focusedBlock = block;
+                console.log(`Focused on block: ${blockId}`);
+            });
+
+            // Handle keydown events (Enter, Backspace)
+            block.addEventListener('keydown', (event) => {
+                const currentBlock = event.target;
+                const isEmpty = currentBlock.innerHTML === '' || currentBlock.innerHTML === '<br>';
+                const selection = window.getSelection();
+                const isAtStart = selection.anchorOffset === 0 && selection.focusOffset === 0 && selection.rangeCount > 0 && selection.getRangeAt(0).collapsed;
+
+
+                // Handle 'Enter' key to create a new block below
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault(); // Prevent default newline
+                    const nextSibling = currentBlock.nextElementSibling;
+                    const newBlock = addBlock('paragraph', '', nextSibling); // Insert before next sibling
+                    focusAndMoveCursorToEnd(newBlock); // Focus the new block
+                }
+                // Handle 'Backspace' key at the start of an empty or non-empty block
+                else if (event.key === 'Backspace' && isAtStart) {
+                     const previousBlock = currentBlock.previousElementSibling;
+                     // Check if it's not the very first block
+                     if (previousBlock && previousBlock.classList.contains('editor-block')) {
+                         event.preventDefault(); // Prevent default backspace
+
+                         // If the current block is not empty, merge its content to the previous one
+                         if (!isEmpty) {
+                            const currentContent = currentBlock.innerHTML;
+                            // Append current content to previous block (might need refinement for complex HTML)
+                            previousBlock.innerHTML += currentContent;
+                         }
+
+                         // Move focus to the end of the previous block
+                         focusAndMoveCursorToEnd(previousBlock);
+
+                         // Remove the current block
+                         currentBlock.remove();
+
+                         // Update focused block reference
+                         focusedBlock = previousBlock;
+                     }
+                     // If it IS the first block and it's empty (prevent deleting the last block entirely via backspace)
+                     else if (isEmpty && !previousBlock && editorContainer.querySelectorAll('.editor-block').length === 1) {
+                         event.preventDefault(); // Don't delete the last block if it's empty
+                         console.log("Cannot delete the last empty block with Backspace.");
+                     }
+                }
+            });
+
+            // Insert the block into the container
+            if (insertBeforeNode) {
+                editorContainer.insertBefore(block, insertBeforeNode);
+            } else {
+                editorContainer.appendChild(block);
+            }
+
+            return block; // Return the created block element
+        }
+
+        /**
+         * Executes a formatting command on the selected text within the currently focused block.
+         * @param {string} command - The command to execute (e.g., 'bold', 'italic', 'insertOrderedList').
+         */
+        function formatText(command) {
+            // Ensure focus is within an editable block before executing command
+            let targetBlock = focusedBlock;
+
+            // If focus is not directly on the block, check if it's inside one
+            if (!targetBlock || !targetBlock.contains(document.activeElement)) {
+                 // Check if the active element is inside *any* editor block
+                 const activeElement = document.activeElement;
+                 const parentBlock = activeElement.closest('.editor-block');
+                 if(parentBlock) {
+                    targetBlock = parentBlock;
+                    targetBlock.focus(); // Re-focus the block
+                 } else {
+                     // If focus is completely outside, try to focus the last known block
+                     if(focusedBlock) {
+                        targetBlock = focusedBlock;
+                        targetBlock.focus();
+                     } else {
+                         console.warn("No block focused to apply formatting.");
+                         return; // Exit if no block can be determined
+                     }
+                 }
+            }
+
+            // Use a small timeout to ensure focus is set before executing command
+            setTimeout(() => {
+                console.log(`Executing command: ${command} on block: ${targetBlock.id}`);
+                // Note: document.execCommand is deprecated but necessary here for simplicity.
+                document.execCommand(command, false, null);
+                // Re-focus might be needed after certain commands
+                targetBlock.focus();
+            }, 0);
+        }
+
+
+        /**
+         * Generates JSON output from the editor blocks.
+         */
+        function generateJsonOutput() {
+            const blocks = editorContainer.querySelectorAll('.editor-block');
+            const output = [];
+
+            blocks.forEach(block => {
+                output.push({
+                    id: block.id,
+                    type: block.getAttribute('data-type') || 'paragraph', // Get type from data attribute
+                    content: block.innerHTML // Get the HTML content
+                });
+            });
+
+            // Display the JSON
+            jsonOutputPre.textContent = JSON.stringify(output, null, 2); // Pretty print JSON
+            jsonOutputContainer.classList.remove('hidden'); // Show the output area
+        }
+
+        // --- Event Listeners ---
+
+        // Formatting buttons
+        boldBtn.addEventListener('click', () => formatText('bold'));
+        italicBtn.addEventListener('click', () => formatText('italic'));
+        underlineBtn.addEventListener('click', () => formatText('underline'));
+        orderedListBtn.addEventListener('click', () => formatText('insertOrderedList')); // New
+        unorderedListBtn.addEventListener('click', () => formatText('insertUnorderedList')); // New
+
+        // Add Block button
+        addBlockBtn.addEventListener('click', () => {
+            const newBlock = addBlock();
+            focusAndMoveCursorToEnd(newBlock); // Focus the newly added block
+        });
+
+        // Output JSON button
+        outputJsonBtn.addEventListener('click', generateJsonOutput);
+
+        // --- Initialization ---
+
+        // Add the first block when the editor loads
+        const firstBlock = addBlock('paragraph', 'Welcome! Start typing your first block.');
+        // Set initial focus (optional, focusAndMoveCursorToEnd handles it now)
+        // focusedBlock = firstBlock; // Initialize focused block reference
+
+    </script>
+
+</body>
+</html>

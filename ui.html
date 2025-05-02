@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind Math Keyboard - Sidebar Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Style for active sidebar button */
+        .sidebar-button.active {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            font-weight: 600;
+        }
+        /* Style for keys */
+        .key {
+            @apply flex justify-center items-center bg-white hover:bg-gray-200 active:bg-gray-300 border border-gray-300 rounded-md shadow-sm p-2 text-lg font-medium text-gray-800 transition duration-150 ease-in-out cursor-pointer select-none;
+            min-height: 40px; /* Ensure minimum key height */
+            min-width: 40px; /* Ensure minimum key width */
+        }
+        .key-special {
+             @apply bg-gray-100 hover:bg-gray-300 active:bg-gray-400;
+        }
+        .key-done {
+             @apply bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white;
+        }
+         .key-backspace {
+             @apply bg-red-100 hover:bg-red-200 active:bg-red-300 text-red-700;
+         }
+         /* Hide inactive content panels */
+         .content-panel { display: none; }
+         .content-panel.active { display: block; }
+
+         /* Ensure consistent height for the main container */
+         .keyboard-container {
+            min-height: 400px; /* Adjust as needed */
+         }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-gradient-to-b from-gray-200 to-gray-300 p-3 rounded-lg shadow-xl max-w-2xl w-full keyboard-container flex">
+
+        <div class="w-32 bg-gray-300/50 rounded-l-md p-2 flex flex-col space-y-2 border-r border-gray-400">
+            <button id="cat-numbers" class="sidebar-button w-full py-2 px-3 text-left text-sm font-medium text-gray-700 hover:bg-gray-400/50 rounded-md focus:outline-none transition duration-150 ease-in-out active">Numbers</button>
+            <button id="cat-symbols" class="sidebar-button w-full py-2 px-3 text-left text-sm font-medium text-gray-700 hover:bg-gray-400/50 rounded-md focus:outline-none transition duration-150 ease-in-out">Symbols</button>
+            <button id="cat-greek" class="sidebar-button w-full py-2 px-3 text-left text-sm font-medium text-gray-700 hover:bg-gray-400/50 rounded-md focus:outline-none transition duration-150 ease-in-out">Greek</button>
+            </div>
+
+        <div class="flex-1 bg-gray-50 p-3 rounded-r-md shadow-inner flex flex-col justify-between">
+
+            <div class="flex-grow">
+                <div id="panel-numbers" class="content-panel active">
+                     <div class="mb-2 text-xs text-gray-500 font-semibold text-center">Numbers & Basic Operators</div>
+                    <div class="grid grid-cols-5 gap-2">
+                        <button class="key">7</button>
+                        <button class="key">8</button>
+                        <button class="key">9</button>
+                        <button class="key key-special">(</button>
+                        <button class="key key-special">)</button>
+                        <button class="key">4</button>
+                        <button class="key">5</button>
+                        <button class="key">6</button>
+                        <button class="key key-special">+</button>
+                        <button class="key key-special">-</button>
+                        <button class="key">1</button>
+                        <button class="key">2</button>
+                        <button class="key">3</button>
+                        <button class="key key-special">×</button>
+                        <button class="key key-special">÷</button>
+                         <button class="key">0</button>
+                        <button class="key">.</button>
+                         <button class="key key-special">%</button>
+                        <button class="key key-special">^</button>
+                        <button class="key key-special">=</button>
+                    </div>
+                </div>
+
+                <div id="panel-symbols" class="content-panel">
+                    <div class="mb-2 text-xs text-gray-500 font-semibold text-center">Relations & Operators</div>
+                    <div class="grid grid-cols-5 gap-2 mb-4">
+                        <button class="key">√</button>
+                        <button class="key key-special">&lt;</button>
+                        <button class="key key-special">&gt;</button>
+                        <button class="key key-special">≤</button> <button class="key key-special">≥</button> <button class="key key-special">≠</button> <button class="key key-special">≈</button> <button class="key key-special">∞</button> <button class="key key-special">±</button> <button class="key key-special">°</button> </div>
+                     <div class="mb-2 text-xs text-gray-500 font-semibold text-center">Set Theory & Logic</div>
+                    <div class="grid grid-cols-5 gap-2">
+                        <button class="key">∫</button> <button class="key">∑</button> <button class="key">∈</button> <button class="key">∉</button> <button class="key">⊂</button> <button class="key">∪</button> <button class="key">∩</button> <button class="key">∀</button> <button class="key">∃</button> <button class="key">⇒</button> </div>
+                </div>
+
+                <div id="panel-greek" class="content-panel">
+                     <div class="mb-2 text-xs text-gray-500 font-semibold text-center">Lowercase (abc)</div>
+                    <div class="grid grid-cols-6 gap-2 mb-4">
+                        <button class="key">α</button> <button class="key">β</button> <button class="key">γ</button>
+                        <button class="key">δ</button> <button class="key">ε</button> <button class="key">ζ</button>
+                        <button class="key">η</button> <button class="key">θ</button> <button class="key">ι</button>
+                        <button class="key">κ</button> <button class="key">λ</button> <button class="key">μ</button>
+                        <button class="key">ν</button> <button class="key">ξ</button> <button class="key">π</button>
+                        <button class="key">ρ</button> <button class="key">σ</button> <button class="key">τ</button>
+                        <button class="key">υ</button> <button class="key">φ</button> <button class="key">χ</button>
+                        <button class="key">ψ</button> <button class="key">ω</button>
+                        <button class="key"></button> </div>
+                     <div class="mb-2 text-xs text-gray-500 font-semibold text-center">Uppercase (ABC)</div>
+                     <div class="grid grid-cols-6 gap-2">
+                        <button class="key">Γ</button> <button class="key">Δ</button> <button class="key">Θ</button>
+                        <button class="key">Λ</button> <button class="key">Ξ</button> <button class="key">Π</button>
+                        <button class="key">Σ</button> <button class="key">Φ</button> <button class="key">Ψ</button>
+                        <button class="key">Ω</button>
+                        </div>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-gray-400 grid grid-cols-4 gap-2">
+                <button class="key key-special text-xl">←</button> <button class="key key-special text-xl">→</button> <button class="key key-backspace text-xl col-span-1">⌫</button> <button class="key key-done col-span-1">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebarButtons = document.querySelectorAll('.sidebar-button');
+        const contentPanels = document.querySelectorAll('.content-panel');
+
+        sidebarButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Deactivate all sidebar buttons and content panels
+                sidebarButtons.forEach(btn => btn.classList.remove('active'));
+                contentPanels.forEach(panel => panel.classList.remove('active'));
+
+                // Activate clicked sidebar button
+                button.classList.add('active');
+
+                // Activate corresponding content panel
+                // Assumes panel ID is 'panel-' + category name from button ID ('cat-')
+                const panelId = button.id.replace('cat-', 'panel-');
+                const targetPanel = document.getElementById(panelId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+            });
+        });
+
+        // --- TODO ---
+        // Add event listeners to all the number/symbol/greek keys within their respective panels.
+        // Add event listeners to the control keys (Prev, Next, Backspace, Done).
+        // Implement the logic for interacting with a text input/textarea:
+        // e.g., function insertCharacter(char) { /* find active input, insert char */ }
+        // e.g., function moveCursor(direction) { /* find active input, adjust cursor */ }
+        // e.g., function backspace() { /* find active input, delete char before cursor */ }
+        // e.g., function closeKeyboard() { /* hide or remove the keyboard element */ }
+
+    </script>
+
+</body>
+</html>

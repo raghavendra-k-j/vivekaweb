@@ -12,11 +12,19 @@ export default defineConfig({
     tsconfigPaths(),
     createDsPlugin({
       sourceTokenFile: "app/ui/ds/core/tokens.ts",
-      scssOutputPath: "app/ui/ds/core/_variables.scss"
+      cssOutputPath: "app/ui/ds/core/_variables.css"
     }),
   ],
   resolve: {
     alias: {
     },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {}
+    }
+  },
+  server: {
+    hmr: false,
   },
 });

@@ -1,17 +1,32 @@
 import chalk from 'chalk';
 
-type LogLevel = 'info' | 'warn' | 'error' | 'debug';
+export enum LogLevel {
+    ERROR = 'error',
+    WARN = 'warn',
+    INFO = 'info',
+    DEBUG = 'debug'
+}
+
+const LOG_LEVEL_ORDER: LogLevel[] = [
+    LogLevel.ERROR,
+    LogLevel.WARN,
+    LogLevel.INFO,
+    LogLevel.DEBUG
+];
 
 class Logger {
-
     private static instance: Logger;
-    private logLevel: LogLevel = 'debug';
+    private logLevel: LogLevel = LogLevel.DEBUG;
+    private readonly instanceId: string;
 
-    private constructor() { }
+    // Private constructor enforces Singleton
+    public constructor(instanceId?: string) {
+        this.instanceId = instanceId ?? '';
+    }
 
-    public static getInstance(): Logger {
+    public static getInstance(instanceId?: string): Logger {
         if (!Logger.instance) {
-            Logger.instance = new Logger();
+            Logger.instance = new Logger(instanceId);
         }
         return Logger.instance;
     }
@@ -20,60 +35,59 @@ class Logger {
         this.logLevel = level;
     }
 
-    // Generic log method to handle multiple arguments
-    private log(level: LogLevel, ...args: any[]): void {
+    private shouldLog(level: LogLevel): boolean {
+        return (
+            LOG_LEVEL_ORDER.indexOf(level) <= LOG_LEVEL_ORDER.indexOf(this.logLevel)
+        );
+    }
+
+    private formatMessage(level: LogLevel, ...args: unknown[]): string {
+        let formatMessage = '';
+        if (args.length > 0) {
+            for (const arg of args) {
+                if (typeof arg === 'string') {
+                    formatMessage += `${arg} `;
+                }
+                else {
+                    formatMessage += `${arg}`;
+                }
+            }
+        }
+        return `[${this.instanceId}] [${level.toUpperCase()}] ${formatMessage}`;
+    }
+
+    private printLog(level: LogLevel, message: string): void {
+        const logStyles: Record<LogLevel, (msg: string) => string> = {
+            [LogLevel.INFO]: chalk.blue,
+            [LogLevel.WARN]: chalk.yellow,
+            [LogLevel.ERROR]: chalk.red,
+            [LogLevel.DEBUG]: chalk.gray
+        };
+
+        console.log(logStyles[level](message));
+    }
+
+    private log(level: LogLevel, ...args: unknown[]): void {
         if (this.shouldLog(level)) {
             const message = this.formatMessage(level, ...args);
             this.printLog(level, message);
         }
     }
 
-    // Formats the log message with colors and handles multiple arguments
-    private formatMessage(level: LogLevel, ...args: any[]): string {
-        const formattedArgs = args.map(arg => {
-            if (typeof arg === 'object') {
-                return JSON.stringify(arg, null, 2);  // Pretty print objects
-            }
-            return String(arg);  // Convert to string
-        }).join(' ');
-
-        return `[${level.toUpperCase()}] ${formattedArgs}`;
+    public info(...args: unknown[]): void {
+        this.log(LogLevel.INFO, ...args);
     }
 
-    // Optimized printLog method using a map for log level to color/style mapping
-    private printLog(level: LogLevel, message: string): void {
-        const logStyles: Record<LogLevel, (message: string) => string> = {
-            info: chalk.blue,
-            warn: chalk.yellow,
-            error: chalk.red,
-            debug: chalk.gray
-        };
-
-        const logStyle = logStyles[level] || chalk.white;  // Default to white if level is not found
-        console.log(logStyle(message));  // Apply the style and log the message
+    public warn(...args: unknown[]): void {
+        this.log(LogLevel.WARN, ...args);
     }
 
-    // Public methods to log different levels
-    public info(...args: any[]): void {
-        this.log('info', ...args);
+    public error(...args: unknown[]): void {
+        this.log(LogLevel.ERROR, ...args);
     }
 
-    public warn(...args: any[]): void {
-        this.log('warn', ...args);
-    }
-
-    public error(...args: any[]): void {
-        this.log('error', ...args);
-    }
-
-    public debug(...args: any[]): void {
-        this.log('debug', ...args);
-    }
-
-    // Determines if a log should be printed based on the current log level
-    private shouldLog(level: LogLevel): boolean {
-        const levels: LogLevel[] = ['info', 'warn', 'error', 'debug'];
-        return levels.indexOf(level) <= levels.indexOf(this.logLevel);
+    public debug(...args: unknown[]): void {
+        this.log(LogLevel.DEBUG, ...args);
     }
 }
 
