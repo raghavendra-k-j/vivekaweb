@@ -4,6 +4,7 @@ type KeyGroupProps = {
     id: string;
     name: string;
     items: KbKey[];
+    
 }
 
 export class KeyGroup {
