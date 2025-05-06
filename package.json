@@ -10,10 +10,10 @@
     "postinstall": "node ./postinstall.js"
   },
   "dependencies": {
-    "@react-router/fs-routes": "^7.5.2",
-    "@react-router/node": "^7.5.2",
-    "@react-router/serve": "^7.5.2",
+    "@react-router/node": "^7.5.3",
+    "@react-router/serve": "^7.5.3",
     "@tinymce/tinymce-react": "^6.1.0",
+    "axios": "^1.9.0",
     "clsx": "^2.1.1",
     "isbot": "^5.1.17",
     "katex": "^0.16.22",
@@ -23,11 +23,11 @@
     "mobx-react-lite": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.5.2",
+    "react-router": "^7.5.3",
     "tinymce": "^7.8.0"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.5.2",
+    "@react-router/dev": "^7.5.3",
     "@tailwindcss/vite": "^4.1.4",
     "@types/node": "^20",
     "@types/react": "^19.0.1",
@@ -35,8 +35,10 @@
     "autoprefixer": "^10.4.21",
     "fs-extra": "^11.3.0",
     "postcss": "^8.5.3",
+    "postcss-each": "^1.1.0",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.1",
+    "postcss-simple-vars": "^7.0.1",
     "react-router-devtools": "^1.1.0",
     "tailwindcss": "^4.1.4",
     "ts-node": "^10.9.2",

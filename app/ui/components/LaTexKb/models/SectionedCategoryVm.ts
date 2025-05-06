@@ -22,6 +22,7 @@ export class SectionedCategoryVm extends CategoryVm {
     static fromSectionedCategory(category: SectionedCategory): SectionedCategoryVm {
         return new SectionedCategoryVm({
             id: category.id,
+            type: category.type,
             name: category.name,
             items: category.items.map(item => SectionVm.fromSection(item)),
         });

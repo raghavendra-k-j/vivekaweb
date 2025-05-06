@@ -1,73 +1,37 @@
-import {
-  isRouteErrorResponse,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
-
-
+import { Outlet, } from "react-router";
 import type { Route } from "./+types/root";
-import ErrorPage from "./ui/components/errors/ErrorPage";
-import "./ui/ds/core/core.css";
+import { AppEnv } from "./core/config/AppEnv";
+import { BaseEnv } from "./core/config/BaseEnv";
+import { getConfigService } from "./domain/common/services/ConfigService";
+import type { RootLoaderData } from "./domain/common/types/common/RootLoaderData";
+import { ApiError } from "./infra/errors/ApiError";
 
 
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap",
-  },
-];
-
-export function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
-        <Links />
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" />
-      </head>
-      <body className="p-3">
-        {children}
-        <ScrollRestoration />
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
-export default function App() {
-  return <Outlet />;
-}
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    details = error.status === 404 ? "The requested page could not be found." : error.statusText || details;
+export async function loader({ request }: Route.LoaderArgs): Promise<RootLoaderData> {
+  const appEnv = AppEnv.fromBaseEnv(BaseEnv.instance, request.url);
+  const orgConfigRes = (await getConfigService().getOrgConfig(appEnv.tenant));
+  if (orgConfigRes.isError) {
+    const apiError = orgConfigRes.error;
+    const statusCode = apiError instanceof ApiError ? apiError.statusCode ?? 500 : 500;
+    throw new Response(JSON.stringify({
+      message: apiError.message,
+      description: apiError.description,
+      developerMessage: apiError.developerMessage,
+    }), {
+      status: statusCode,
+      statusText: apiError.message,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
-  else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
-
-  return ErrorPage({
-    message: message,
-    description: details,
-    stack: stack,
-  });
+  const orgConfig = orgConfigRes.data;
+  return {
+    appEnv: appEnv.serialize(),
+    orgConfig: orgConfig.serialize(),
+  };
 }
 
-
+export default function App(props: Route.ComponentProps) {
+  return (<Outlet />);
+}

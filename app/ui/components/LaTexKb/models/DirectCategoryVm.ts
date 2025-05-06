@@ -17,6 +17,7 @@ export class DirectCategoryVm extends CategoryVm {
     static fromDirectCategory(category: DirectCategory): DirectCategoryVm {
         return new DirectCategoryVm({
             id: category.id,
+            type: category.type,
             name: category.name,
             items: category.items.map((item) => KeyGroupVm.fromKeyGroup(item)),
         });

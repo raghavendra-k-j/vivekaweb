@@ -1,5 +1,14 @@
 :root {
---color-primary: #007bff;
---color-primary-hover: #007bff;
+--color-surface: #ffffff;
+--color-background: #f2f4f7;
+--color-primary: #377bd9;
+--color-primary-hover: #2e6abc;
+--color-on-primary: #ffffff;
+--color-on-primary-hover: #ffffff;
+--color-brand-app-bar-bg: #2a5298;
+--color-brand-app-bar-text: #ffffff;
+--color-content-primary: #212529;
+--color-content-secondary: #6c757d;
+--color-content-tertiary: #495057;
 --ff-app-sans: Poppins, sans-serif;
 }

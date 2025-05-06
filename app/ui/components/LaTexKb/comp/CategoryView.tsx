@@ -7,6 +7,7 @@ import { SectionedCategoryVm } from "../models/SectionedCategoryVm";
 import React from "react";
 import type { CategoryVm } from "../models/CategoryVm";
 import styles from "./../style.module.css";
+import { CategoryType } from "~/domain/latexkb/models/Category";
 
 const CategoryView = observer(() => {
     const store = useLaTexKbStore();
@@ -16,14 +17,14 @@ const CategoryView = observer(() => {
     </div>;
 });
 
-const rendererMap = {
-    DirectCategoryVm: (category: CategoryVm) => <DirectCategoryView category={category as DirectCategoryVm} />,
-    SectionedCategoryVm: (category: CategoryVm) => <SectionedCategoryView category={category as SectionedCategoryVm} />,
+const rendererMap: Record<CategoryType, (category: CategoryVm) => React.JSX.Element> = {
+    [CategoryType.DIRECT]: (category) => <DirectCategoryView category={category as DirectCategoryVm} />,
+    [CategoryType.SECTIONED]: (category) => <SectionedCategoryView category={category as SectionedCategoryVm} />,
 };
 
+
 function renderCategoryView(category: CategoryVm): React.JSX.Element {
-    const key = category.constructor.name as keyof typeof rendererMap;
-    const renderer = rendererMap[key];
+    const renderer = rendererMap[category.type];
     return renderer(category);
 }
 

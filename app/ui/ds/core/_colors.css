@@ -1,0 +1,28 @@
+.content-primary {
+    color: var(--color-content-primary);
+}
+
+.content-secondary {
+    color: var(--color-content-secondary);
+}
+
+.content-tertiary {
+    color: var(--color-content-tertiary);
+}
+
+.bg-background {
+    background-color: var(--color-background);
+}
+
+.bg-surface {
+    background-color: var(--color-surface);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+

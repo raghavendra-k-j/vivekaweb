@@ -9,5 +9,5 @@ export function createCategoryVm(category: Category): CategoryVm {
     } else if (category.isDirect) {
         return DirectCategoryVm.fromDirectCategory(category.asDirect);
     }
-    throw new Error("Unknown category type");
+    throw new Error("Unknown category type: " + category.type);
 }

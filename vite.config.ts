@@ -1,18 +1,18 @@
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
+import createDsPlugin from "./plugins/ds/ds";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import createDsPlugin from './plugins/ds/ds.js';
 
 
 export default defineConfig({
   plugins: [
-    tailwindcss(), 
+    tailwindcss(),
     reactRouter(),
     tsconfigPaths(),
     createDsPlugin({
-      sourceTokenFile: "app/ui/ds/core/tokens.ts",
-      cssOutputPath: "app/ui/ds/core/_variables.css"
+      sourceTokenFile: "./app/ui/ds/core/tokens.ts",
+      cssOutputPath: "./app/ui/ds/core/_variables.css",
     }),
   ],
   resolve: {
@@ -25,10 +25,10 @@ export default defineConfig({
     }
   },
   server: {
-    hmr: false,
+    hmr: true,
   },
   build: {
-    minify: false,
+    minify: true,
     sourcemap: true,
   }
 });

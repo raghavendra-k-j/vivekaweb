@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"],
+      "~/ds/*": ["./app/ui/ds/*"],
     },
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,

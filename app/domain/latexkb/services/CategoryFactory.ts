@@ -1425,4 +1425,3 @@ function getAccentsCategory(): SectionedCategory {
 
     return category;
 }
-

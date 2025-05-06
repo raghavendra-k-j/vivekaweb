@@ -1,37 +1,49 @@
-type AppErrorProps = {
+export type AppErrorProps = {
     message: string;
     description?: string;
+    developerMessage?: string;
+    errorCode?: string;
 }
 
-export class AppError extends Error {
 
+export class AppError extends Error {
     message: string;
     description?: string;
+    developerMessage?: string;
+    errorCode?: string;
 
-    constructor(props: AppErrorProps) {
-        super(props.message);
-        this.message = props.message;
-        this.description = props.description;
+    constructor({ message, description, developerMessage, errorCode }: AppErrorProps) {
+        super(message);
+        this.message = message;
+        this.description = description;
+        this.developerMessage = developerMessage;
+        this.errorCode = errorCode;
     }
 
     static fromAny(error: any): AppError {
-        if (error instanceof AppError) return error;
-        if (error instanceof Error) return AppError.fromError(error);
-        return AppError.unknow();
+        if (error instanceof AppError) {
+            return error;
+        }
+        if (error instanceof Error) {
+            return AppError.fromError(error);
+        }
+        return AppError.unknown();
     }
 
-    static unknow(): AppError {
+
+    static unknown(): AppError {
         return new AppError({
-            message: "Unknown error",
+            message: "Something went wrong",
+            description: "An unknown error occurred. Please try again",
         });
     }
 
     static fromError(error: Error): AppError {
         return new AppError({
-            message: error.message,
+            message: "Something went wrong",
+            description: "An error occurred. Please try again",
+            developerMessage: error.stack,
         });
     }
-
-
 
 }

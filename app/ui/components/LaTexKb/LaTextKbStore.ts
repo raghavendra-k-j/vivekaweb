@@ -6,22 +6,29 @@ import { DataState } from "~/ui/utils/DataState";
 import { KbKeyVm } from "./models/KbKeyVm";
 import { CategoryVm } from "./models/CategoryVm";
 import { CategoriesVm } from "./models/CategoriesVm";
+import { LaTexExpr } from "~/domain/latexkb/models/LaTexExpr";
+import { logger } from "~/core/utils/logger";
 
 type LaTexKbStoreProps = {
     latexKbService: LaTexKbService;
+    expr?: LaTexExpr;
+    onDone: (expr: LaTexExpr) => void;
 }
 
 export class LaTexKbStore {
-
     latexKbService: LaTexKbService;
     categoriesState: DataState<CategoriesVm>;
     mf: MathfieldElement | null = null;
     rxSelectedCategory: CategoryVm | null = null;
+    onDone: (expr: LaTexExpr) => void;
+    expr?: LaTexExpr;
 
 
     constructor(props: LaTexKbStoreProps) {
         this.latexKbService = props.latexKbService;
         this.categoriesState = DataState.init<CategoriesVm>();
+        this.onDone = props.onDone;
+        this.expr = props.expr;
         makeAutoObservable(this, {
             categoriesState: observable,
             rxSelectedCategory: observable,
@@ -75,6 +82,7 @@ export class LaTexKbStore {
         });
         mf.mathVirtualKeyboardPolicy = "manual";
         mf.placeholder = "\\text{Enter a formula}";
+        mf.value = this.expr?.latex ?? '';
         mf.focus();
     }
 
@@ -105,6 +113,14 @@ export class LaTexKbStore {
         if (!this.mf) return;
         this.mf.executeCommand(selector);
         this.mf.focus();
+    }
+
+    onClickDone(): void {
+        logger.debug("onClickDone", this.mf?.getValue("latex"));
+        if (!this.mf) return;
+        const latex = this.mf.getValue("latex");
+        const expr = new LaTexExpr({ latex: latex, isInline: true });
+        this.onDone(expr);
     }
 
 }

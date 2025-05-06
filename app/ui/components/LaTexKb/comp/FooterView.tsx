@@ -12,8 +12,8 @@ export function FooterView() {
                 <ActionButton icon={<Trash2 />} onClick={() => store.clear()} />
                 <ActionButton icon={<ChevronLeft />} onClick={() => store.navigateLeft()} />
                 <ActionButton icon={<ChevronRight />} onClick={() => store.navigateRight()} />
-                <ActionButton icon={<Delete />} onClick={() => store.backspace()} />
-                <DoneButton />
+                <ActionButton icon={<Delete />} onClick={() => store.onClickDone()} />
+                <DoneButton onClick={() => store.onClickDone()} />
             </div>
         </div>
     );
@@ -32,9 +32,10 @@ function ActionButton(props: ActionButtonProps) {
     );
 }
 
-function DoneButton() {
+
+function DoneButton({ onClick }: { onClick?: () => void }) {
     return (
-        <button className={clsx(styles.actionButton, styles.actionDone)} onClick={() => { }}>
+        <button className={clsx(styles.actionButton, styles.actionDone)} onClick={onClick}>
             {<Check size={16} />}
             <span>Done</span>
         </button>

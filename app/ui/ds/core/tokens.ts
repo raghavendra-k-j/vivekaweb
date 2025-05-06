@@ -1,4 +1,5 @@
 import { colors } from "./colors";
+import { dimens } from "./dimens";
 import { fontFamilies, fontSizes, fontWeights } from "./typography";
 
 export type DsToken = {
@@ -22,10 +23,16 @@ const fontFamiliesToken: DsToken = {
     value: fontFamilies
 }
 
+const dimensToken: DsToken = {
+    name: 'dimen',
+    value: dimens
+}
+
 export const dsTokens: DsToken[] = [
     colorsToken,
     fontSizesToken,
-    fontFamiliesToken
+    fontFamiliesToken,
+    dimensToken,
 ]
 
 

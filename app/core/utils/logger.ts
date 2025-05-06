@@ -68,9 +68,26 @@ class Logger {
     }
 
     private log(level: LogLevel, ...args: unknown[]): void {
-        if (this.shouldLog(level)) {
-            const message = this.formatMessage(level, ...args);
+        if (!this.shouldLog(level)) return;
+
+        try {
+            const timestamp = new Date().toISOString();
+            const formattedArgs = args.map(arg => {
+                if (arg instanceof Error) {
+                    return `${arg.name}: ${arg.message}\n${arg.stack}`;
+                }
+                try {
+                    return typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg);
+                } catch {
+                    return '[Unserializable Object]';
+                }
+            });
+
+            const message = `[${timestamp}] [${level.toUpperCase()}] ${formattedArgs.join(' ')}`;
             this.printLog(level, message);
+        } catch (logError) {
+            // In case logging itself throws an error
+            console.error('Logging failed:', logError);
         }
     }
 

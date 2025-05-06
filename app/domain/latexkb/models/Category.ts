@@ -1,6 +1,12 @@
 import { KeyGroup } from "./KeyGroup";
 import { Section } from "./Section";
 
+
+export enum CategoryType {
+    DIRECT = "direct",
+    SECTIONED = "sectioned",
+}
+
 type CategoryProps = {
     id: string;
     name: string;
@@ -8,19 +14,21 @@ type CategoryProps = {
 
 export abstract class Category {
     id: string;
+    type: CategoryType;
     name: string;
 
-    constructor(props: CategoryProps) {
+    protected constructor(props: CategoryProps, type: CategoryType) {
         this.id = props.id;
         this.name = props.name;
+        this.type = type;
     }
 
     get isSectioned(): boolean {
-        return this instanceof SectionedCategory;
+        return this.type === CategoryType.SECTIONED;
     }
 
     get isDirect(): boolean {
-        return this instanceof DirectCategory;
+        return this.type === CategoryType.DIRECT;
     }
 
     get asSectioned(): SectionedCategory {
@@ -48,7 +56,7 @@ export class DirectCategory extends Category {
     items: KeyGroup[];
 
     constructor(props: DirectCategoryProps) {
-        super(props);
+        super(props, CategoryType.DIRECT);
         this.items = props.items;
     }
 
@@ -69,7 +77,7 @@ export class SectionedCategory extends Category {
     items: Section[];
 
     constructor(props: SectionedCategoryProps) {
-        super(props);
+        super(props, CategoryType.SECTIONED);
         this.items = props.items;
     }
 

@@ -1,9 +1,13 @@
 import clsx from "clsx";
-import { buttonStyle } from "~/ui/ds/core/core.css";
 
+const buttonStyle = clsx(
+    "px-4 py-2 rounded-sm transition-colors",
+    "bg-[--color-primary] text-[--color-on-primary]",
+    "hover:bg-[--color-primary-hover] hover:text-[--color-on-primary-hover]"
+);
 
 function Button() {
-    return ( <button className={clsx(buttonStyle)}>Click On Me</button> );
+    return <button className={buttonStyle}>Click On Me</button>;
 }
 
 export default Button;

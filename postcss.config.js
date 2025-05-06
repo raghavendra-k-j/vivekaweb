@@ -1,5 +1,7 @@
 export const plugins = {
   autoprefixer: {},
   "postcss-nesting": {},
-  "postcss-extend" : {},
+  "postcss-extend": {},
+  "postcss-simple-vars": {},
+  "postcss-each": {},
 };

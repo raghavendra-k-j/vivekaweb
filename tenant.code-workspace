@@ -11,6 +11,10 @@
 			"path": "app/domain"
 		},
 		{
+			"name": "infra",
+			"path": "app/infra"
+		},
+		{
 			"name" : "routes",
 			"path": "app/routes"
 		},
